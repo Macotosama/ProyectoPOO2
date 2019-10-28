@@ -5,6 +5,8 @@
  */
 package GUI;
 
+import javax.sound.sampled.Clip;
+
 /**
  *
  * @author peperony
@@ -12,6 +14,13 @@ package GUI;
 public class Fondo extends javax.swing.JFrame {
     public Principal principal;
     public Menu menu;
+    public AgregarCiudad agregarCiudad;
+    public EditarCiudad editarCiudad;
+    public CargarCiudad cargarCiudad;
+    public AgregarAntiheroe agregarAntiheroe;
+    public AgregarVillano agregarVillano;
+    public AgregarHeroe agregarHeroe;
+    public Clip clip;
     /**
      * Creates new form Fondo
      */
@@ -19,8 +28,13 @@ public class Fondo extends javax.swing.JFrame {
         initComponents();
         principal = new Principal();
         menu = new Menu();
+        editarCiudad = new EditarCiudad();
+        agregarCiudad = new AgregarCiudad ();
+        cargarCiudad = new CargarCiudad();
+        agregarAntiheroe = new AgregarAntiheroe();
+        agregarVillano = new AgregarVillano();
+        agregarHeroe = new AgregarHeroe();
         this.setExtendedState(MAXIMIZED_BOTH);
-        //this.add(principal,new AbsoluteConstraints(0,0,-1,-1));
     }
 
     /**

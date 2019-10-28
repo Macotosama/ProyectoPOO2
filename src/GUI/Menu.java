@@ -66,6 +66,7 @@ public class Menu extends javax.swing.JPanel {
         jButtonCargarCiudad.setFont(new java.awt.Font("Arial Black", 3, 18)); // NOI18N
         jButtonCargarCiudad.setForeground(new java.awt.Color(204, 0, 0));
         jButtonCargarCiudad.setText("Cargar ciudad");
+        jButtonCargarCiudad.setFocusPainted(false);
         add(jButtonCargarCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 260, 360, -1));
 
         jButtonAgregarHeroe.setBackground(new java.awt.Color(0, 0, 0));
@@ -93,6 +94,7 @@ public class Menu extends javax.swing.JPanel {
         jButton1.setFont(new java.awt.Font("Arial Black", 3, 48)); // NOI18N
         jButton1.setForeground(new java.awt.Color(204, 0, 0));
         jButton1.setText("Comenzar");
+        jButton1.setFocusPainted(false);
         add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 350, 1050, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Menu.jpg"))); // NOI18N
