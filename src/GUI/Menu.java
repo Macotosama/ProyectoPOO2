@@ -34,7 +34,7 @@ public class Menu extends javax.swing.JPanel {
         jButtonAgregarHeroe = new javax.swing.JButton();
         jButtonAgregarVillano = new javax.swing.JButton();
         jButtonAgregarAntiheroe = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        jButtonComenzar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -65,7 +65,7 @@ public class Menu extends javax.swing.JPanel {
         jButtonCargarCiudad.setBackground(new java.awt.Color(0, 0, 0));
         jButtonCargarCiudad.setFont(new java.awt.Font("Arial Black", 3, 18)); // NOI18N
         jButtonCargarCiudad.setForeground(new java.awt.Color(204, 0, 0));
-        jButtonCargarCiudad.setText("Cargar ciudad");
+        jButtonCargarCiudad.setText("Cargar ciudades");
         jButtonCargarCiudad.setFocusPainted(false);
         add(jButtonCargarCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 260, 360, -1));
 
@@ -90,12 +90,12 @@ public class Menu extends javax.swing.JPanel {
         jButtonAgregarAntiheroe.setFocusPainted(false);
         add(jButtonAgregarAntiheroe, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 480, 350, -1));
 
-        jButton1.setBackground(new java.awt.Color(0, 0, 0));
-        jButton1.setFont(new java.awt.Font("Arial Black", 3, 48)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(204, 0, 0));
-        jButton1.setText("Comenzar");
-        jButton1.setFocusPainted(false);
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 350, 1050, -1));
+        jButtonComenzar.setBackground(new java.awt.Color(0, 0, 0));
+        jButtonComenzar.setFont(new java.awt.Font("Arial Black", 3, 48)); // NOI18N
+        jButtonComenzar.setForeground(new java.awt.Color(204, 0, 0));
+        jButtonComenzar.setText("Comenzar");
+        jButtonComenzar.setFocusPainted(false);
+        add(jButtonComenzar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 350, 1050, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Menu.jpg"))); // NOI18N
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -103,12 +103,12 @@ public class Menu extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton jButton1;
     public javax.swing.JButton jButtonAgregarAntiheroe;
     public javax.swing.JButton jButtonAgregarCioudad;
     public javax.swing.JButton jButtonAgregarHeroe;
     public javax.swing.JButton jButtonAgregarVillano;
     public javax.swing.JButton jButtonCargarCiudad;
+    public javax.swing.JButton jButtonComenzar;
     public javax.swing.JButton jButtonEditarCiudad;
     public javax.swing.JButton jButtonSalir;
     private javax.swing.JLabel jLabel1;

@@ -29,6 +29,15 @@ public class EditarCiudad extends javax.swing.JPanel {
 
         jButtonSalir = new javax.swing.JButton();
         jButtonAtrasEditarCiudad = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
+        jLabelPreviewCiudad = new javax.swing.JLabel();
+        jButtonPreviewCiuedad = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jTextFieldCriminalidad = new javax.swing.JTextField();
+        jTextFieldNuevoNombre = new javax.swing.JTextField();
+        jButtonGuardar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -48,6 +57,57 @@ public class EditarCiudad extends javax.swing.JPanel {
         jButtonAtrasEditarCiudad.setFocusPainted(false);
         add(jButtonAtrasEditarCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(1240, 700, -1, -1));
 
+        jList1.setBackground(new java.awt.Color(0, 0, 0));
+        jList1.setFont(new java.awt.Font("Arial Black", 3, 11)); // NOI18N
+        jList1.setForeground(new java.awt.Color(204, 0, 0));
+        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(jList1);
+
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 150, 200));
+
+        jLabelPreviewCiudad.setOpaque(true);
+        add(jLabelPreviewCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, 620, 300));
+
+        jButtonPreviewCiuedad.setBackground(new java.awt.Color(0, 0, 0));
+        jButtonPreviewCiuedad.setForeground(new java.awt.Color(204, 0, 0));
+        jButtonPreviewCiuedad.setText("Preview");
+        add(jButtonPreviewCiuedad, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 213, 460, 30));
+
+        jLabel2.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel2.setFont(new java.awt.Font("Arial Black", 3, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(204, 0, 0));
+        jLabel2.setText("Indice de crimalidad:");
+        jLabel2.setOpaque(true);
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 260, 380, 40));
+
+        jLabel3.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel3.setFont(new java.awt.Font("Arial Black", 3, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(204, 0, 0));
+        jLabel3.setText("Nuevo nombre (opcional):");
+        jLabel3.setOpaque(true);
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 360, 380, -1));
+
+        jTextFieldCriminalidad.setBackground(new java.awt.Color(0, 0, 0));
+        jTextFieldCriminalidad.setFont(new java.awt.Font("Arial Black", 3, 24)); // NOI18N
+        jTextFieldCriminalidad.setForeground(new java.awt.Color(204, 0, 0));
+        add(jTextFieldCriminalidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 260, 280, -1));
+
+        jTextFieldNuevoNombre.setBackground(new java.awt.Color(0, 0, 0));
+        jTextFieldNuevoNombre.setFont(new java.awt.Font("Arial Black", 3, 24)); // NOI18N
+        jTextFieldNuevoNombre.setForeground(new java.awt.Color(204, 0, 0));
+        add(jTextFieldNuevoNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 360, 280, 40));
+
+        jButtonGuardar.setBackground(new java.awt.Color(0, 0, 0));
+        jButtonGuardar.setFont(new java.awt.Font("Arial Black", 3, 24)); // NOI18N
+        jButtonGuardar.setForeground(new java.awt.Color(204, 0, 0));
+        jButtonGuardar.setText("Guardar");
+        jButtonGuardar.setFocusPainted(false);
+        add(jButtonGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 570, 370, -1));
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/EditarCiudad.jpg"))); // NOI18N
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
@@ -55,7 +115,16 @@ public class EditarCiudad extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton jButtonAtrasEditarCiudad;
+    public javax.swing.JButton jButtonGuardar;
+    public javax.swing.JButton jButtonPreviewCiuedad;
     public javax.swing.JButton jButtonSalir;
     private javax.swing.JLabel jLabel1;
+    public javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    public javax.swing.JLabel jLabelPreviewCiudad;
+    private javax.swing.JList<String> jList1;
+    private javax.swing.JScrollPane jScrollPane1;
+    public javax.swing.JTextField jTextFieldCriminalidad;
+    public javax.swing.JTextField jTextFieldNuevoNombre;
     // End of variables declaration//GEN-END:variables
 }

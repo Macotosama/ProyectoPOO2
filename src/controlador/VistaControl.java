@@ -7,6 +7,8 @@ package controlador;
 import GUI.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.FileDialog;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -14,6 +16,7 @@ import java.util.logging.Logger;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.swing.JOptionPane;
 import org.netbeans.lib.awtextra.AbsoluteConstraints;
 /**
  *
@@ -22,10 +25,11 @@ import org.netbeans.lib.awtextra.AbsoluteConstraints;
 public class VistaControl implements ActionListener{
     private Fondo fondo;
     private Sonido sonido;
-    
+    private Imagenes imagenes;
     public VistaControl(){
         fondo = new Fondo();
         sonido = new Sonido();
+        imagenes = new Imagenes();
     }
     
     private void IniciarElementos(){
@@ -52,6 +56,10 @@ public class VistaControl implements ActionListener{
         this.fondo.agregarHeroe.jButtonSalir.addActionListener(this);
         this.fondo.agregarHeroe.jButtonAtrasAgregarHeroe.addActionListener(this);
         this.fondo.menu.jButtonAgregarHeroe.addActionListener(this);
+        this.fondo.menu.jButtonComenzar.addActionListener(this);
+        this.fondo.preJuego.jButtonSalir.addActionListener(this);
+        this.fondo.preJuego.jButtonAtrasPreJuego.addActionListener(this);
+        this.fondo.preJuego.jButtonPreviewCiudad.addActionListener(this);
     }
     
     public void Inicio () {
@@ -65,6 +73,7 @@ public class VistaControl implements ActionListener{
         fondo.agregarAntiheroe.setVisible(false);
         fondo.agregarVillano.setVisible(false);
         fondo.agregarHeroe.setVisible(false);
+        fondo.preJuego.setVisible(false);
         fondo.add(fondo.principal,new AbsoluteConstraints(0,0,-1,-1));
         fondo.add(fondo.menu,new AbsoluteConstraints(0,0,-1,-1));
         fondo.add(fondo.agregarCiudad,new AbsoluteConstraints(0,0,-1,-1));
@@ -73,6 +82,7 @@ public class VistaControl implements ActionListener{
         fondo.add(fondo.agregarAntiheroe,new AbsoluteConstraints(0,0,-1,-1));
         fondo.add(fondo.agregarVillano,new AbsoluteConstraints(0,0,-1,-1));
         fondo.add(fondo.agregarHeroe,new AbsoluteConstraints(0,0,-1,-1));
+        fondo.add(fondo.preJuego,new AbsoluteConstraints(0,0,-1,-1));
     }
     
     public void sonidoBotones () {
@@ -82,15 +92,38 @@ public class VistaControl implements ActionListener{
     public void buscarRuta() {
         FileDialog fd = new FileDialog(fondo, "Busqueda", FileDialog.LOAD);
         fd.setDirectory("C:\\");
-        fd.setFile("*.png");
+        fd.setFile("*.jpg");
         fd.setVisible(true);
         String filename =fd.getDirectory() + fd.getFile();
         System.out.println(filename);
+        if(!filename.equals("nullnull")){
+            fondo.agregarCiudad.jTextFieldRutaCiudad.setText(filename);
+        }
     }
     
     public void moverImagen(){
-        Archivos archivo = new Archivos();
-        archivo.moverImagen("", "");
+        try {
+            if (!fondo.agregarCiudad.jTextFieldNombreCiudad.getText().equals("")){
+                imagenes.moverArchivo(fondo.agregarCiudad.jTextFieldRutaCiudad.getText());
+            } else {
+                JOptionPane.showMessageDialog(fondo,"Escriba el nombre de la imagen.","Complete los campos",JOptionPane.WARNING_MESSAGE);
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(fondo,"Hubo un error en la imagen.","Error de imagen",JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    public void cambiarNombre() {
+        
+    }
+    
+    public void ponerImagePreviewMapa(int x, int y){
+        String imagen = fondo.preJuego.Ciudades.getSelectedValue();
+        if (!imagen.equals("")){
+            fondo.preJuego.jLabelPreviewMapa.setIcon(imagenes.modificarTamanioImagen(fondo.preJuego.Ciudades.getSelectedValue(), x, y));
+        } else {
+            JOptionPane.showMessageDialog(fondo,"Debe escoger una ciudad.","Escoca",JOptionPane.WARNING_MESSAGE);
+        }
     }
     
     @Override
@@ -125,7 +158,7 @@ public class VistaControl implements ActionListener{
                 fondo.agregarCiudad.jTextFieldNombreCiudad.setText("");
                 fondo.agregarCiudad.jTextFieldRutaCiudad.setText("");
                 break;
-            case "Cargar ciudad":
+            case "Cargar ciudades":
                 sonidoBotones();
                 fondo.cargarCiudad.setVisible(true);
                 fondo.menu.setVisible(false);
@@ -175,6 +208,21 @@ public class VistaControl implements ActionListener{
                 fondo.agregarHeroe.setVisible(false);
                 fondo.menu.setVisible(true);
                 break;
+            case "Comenzar":
+                sonidoBotones();
+                fondo.preJuego.setVisible(true);
+                fondo.menu.setVisible(false);
+                break;
+            case "AtrasPreJuego":
+                sonidoBotones();
+                fondo.menu.setVisible(true);
+                fondo.preJuego.setVisible(false);
+                break;
+            case "PreviewMapaPreJuego":
+                sonidoBotones();
+                ponerImagePreviewMapa(460, 270);
+                break;
         }
     }
+
 }

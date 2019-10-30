@@ -29,6 +29,7 @@ public class CargarCiudad extends javax.swing.JPanel {
 
         jButtonSalir = new javax.swing.JButton();
         jButtonAtrasCargarCiudad = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -47,6 +48,13 @@ public class CargarCiudad extends javax.swing.JPanel {
         jButtonAtrasCargarCiudad.setActionCommand("AtrasCargarCiudad");
         add(jButtonAtrasCargarCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(1240, 700, -1, -1));
 
+        jButton1.setBackground(new java.awt.Color(0, 0, 0));
+        jButton1.setFont(new java.awt.Font("Arial Black", 3, 48)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(204, 0, 0));
+        jButton1.setText("Cargar Contenido");
+        jButton1.setFocusPainted(false);
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 210, 740, 230));
+
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setFont(new java.awt.Font("Arial Black", 3, 11)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(204, 0, 0));
@@ -56,6 +64,7 @@ public class CargarCiudad extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     public javax.swing.JButton jButtonAtrasCargarCiudad;
     public javax.swing.JButton jButtonSalir;
     private javax.swing.JLabel jLabel1;

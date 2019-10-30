@@ -85,6 +85,7 @@ public class AgregarCiudad extends javax.swing.JPanel {
         jButtonGuardarCiudad.setForeground(new java.awt.Color(204, 0, 0));
         jButtonGuardarCiudad.setText("Guardar");
         jButtonGuardarCiudad.setActionCommand("GuardarCiudad");
+        jButtonGuardarCiudad.setFocusPainted(false);
         add(jButtonGuardarCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 400, 450, -1));
 
         jButtonAtrasAgregarCiudad.setBackground(new java.awt.Color(0, 0, 0));
