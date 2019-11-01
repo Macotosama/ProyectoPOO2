@@ -21,6 +21,7 @@ public class Fondo extends javax.swing.JFrame {
     public AgregarVillano agregarVillano;
     public AgregarHeroe agregarHeroe;
     public PreJuego preJuego;
+    public Juego juego;
     public Clip clip;
     /**
      * Creates new form Fondo
@@ -36,6 +37,7 @@ public class Fondo extends javax.swing.JFrame {
         agregarVillano = new AgregarVillano();
         agregarHeroe = new AgregarHeroe();
         preJuego = new PreJuego();
+        juego = new Juego();
         this.setExtendedState(MAXIMIZED_BOTH);
     }
 

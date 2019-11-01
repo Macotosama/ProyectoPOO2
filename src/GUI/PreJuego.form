@@ -267,6 +267,7 @@
           <Color blue="0" green="0" red="cc" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Preview"/>
+        <Property name="actionCommand" type="java.lang.String" value="PreviewPJ1"/>
         <Property name="focusPainted" type="boolean" value="false"/>
       </Properties>
       <AuxValues>
@@ -290,6 +291,7 @@
           <Color blue="0" green="0" red="cc" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Preview"/>
+        <Property name="actionCommand" type="java.lang.String" value="PreviewPJ2"/>
         <Property name="focusPainted" type="boolean" value="false"/>
       </Properties>
       <AuxValues>
@@ -313,6 +315,7 @@
           <Color blue="0" green="0" red="cc" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Jugar"/>
+        <Property name="actionCommand" type="java.lang.String" value="Partida"/>
         <Property name="focusPainted" type="boolean" value="false"/>
       </Properties>
       <AuxValues>

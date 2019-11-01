@@ -120,6 +120,7 @@ public class PreJuego extends javax.swing.JPanel {
         jButtonPreviewPJ1.setFont(new java.awt.Font("Arial Black", 3, 18)); // NOI18N
         jButtonPreviewPJ1.setForeground(new java.awt.Color(204, 0, 0));
         jButtonPreviewPJ1.setText("Preview");
+        jButtonPreviewPJ1.setActionCommand("PreviewPJ1");
         jButtonPreviewPJ1.setFocusPainted(false);
         add(jButtonPreviewPJ1, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 200, 240, 30));
 
@@ -127,6 +128,7 @@ public class PreJuego extends javax.swing.JPanel {
         jButtonPreviewPJ2.setFont(new java.awt.Font("Arial Black", 3, 18)); // NOI18N
         jButtonPreviewPJ2.setForeground(new java.awt.Color(204, 0, 0));
         jButtonPreviewPJ2.setText("Preview");
+        jButtonPreviewPJ2.setActionCommand("PreviewPJ2");
         jButtonPreviewPJ2.setFocusPainted(false);
         add(jButtonPreviewPJ2, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 470, 240, 30));
 
@@ -134,6 +136,7 @@ public class PreJuego extends javax.swing.JPanel {
         jButtonJugar.setFont(new java.awt.Font("Arial Black", 3, 24)); // NOI18N
         jButtonJugar.setForeground(new java.awt.Color(204, 0, 0));
         jButtonJugar.setText("Jugar");
+        jButtonJugar.setActionCommand("Partida");
         jButtonJugar.setFocusPainted(false);
         add(jButtonJugar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 680, 910, 50));
 

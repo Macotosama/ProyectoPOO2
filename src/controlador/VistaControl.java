@@ -5,33 +5,43 @@
  */
 package controlador;
 import GUI.*;
+import javax.swing.JLabel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.FileDialog;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JOptionPane;
 import org.netbeans.lib.awtextra.AbsoluteConstraints;
 /**
- *
- * @author peperony
+ * La clase VistaControl se encarga de controloar y administar todas las clases
+ * del paquete GUI para su uso de manera eficas.
+ * La clase encasula todos los datos necesaria para realizar las acciones
+ * correctas y validadas.
+ * Esta clase implementa la interfas "ActionListener" para poder relizar un 
+ * control de eventos de los botones de los paneles
+ * @author Josué Torres N.
+ * @version 1.0
  */
 public class VistaControl implements ActionListener{
-    private Fondo fondo;
-    private Sonido sonido;
-    private Imagenes imagenes;
+    private final Fondo fondo;
+    private final Sonido sonido;
+    private final Imagenes imagenes;
+    private final Animacion animaciones1;
+    private final Animacion animaciones2;
+    /**
+     * Costructor de la clase
+     */
     public VistaControl(){
         fondo = new Fondo();
         sonido = new Sonido();
         imagenes = new Imagenes();
+        animaciones1 = new Animacion();
+        animaciones2 = new Animacion();
     }
     
+    /**
+     * Le agrega un "addActionListener" como parametro esta clase a todos
+     * los botones de los paneles del paquete GUI
+     */
     private void IniciarElementos(){
         this.fondo.principal.jButtonSalir.addActionListener(this);
         this.fondo.principal.jButtonJugar.addActionListener(this);
@@ -60,8 +70,19 @@ public class VistaControl implements ActionListener{
         this.fondo.preJuego.jButtonSalir.addActionListener(this);
         this.fondo.preJuego.jButtonAtrasPreJuego.addActionListener(this);
         this.fondo.preJuego.jButtonPreviewCiudad.addActionListener(this);
+        this.fondo.preJuego.jButtonPreviewPJ1.addActionListener(this);
+        this.fondo.preJuego.jButtonPreviewPJ2.addActionListener(this);
+        this.fondo.preJuego.jButtonJugar.addActionListener(this);
+        this.fondo.juego.jButtonSalir.addActionListener(this);
+        this.fondo.juego.jButtonAtrasJuego.addActionListener(this);
+        this.fondo.juego.jButtonDuelo.addActionListener(this);
     }
     
+    /**
+     * Metodo principal que inicia el programa.
+     * Agrega a la ventana principal todos los
+     * componentes importantes para dar incio
+     */
     public void Inicio () {
         IniciarElementos();
         fondo.setVisible(true);
@@ -74,6 +95,7 @@ public class VistaControl implements ActionListener{
         fondo.agregarVillano.setVisible(false);
         fondo.agregarHeroe.setVisible(false);
         fondo.preJuego.setVisible(false);
+        fondo.juego.setVisible(false);
         fondo.add(fondo.principal,new AbsoluteConstraints(0,0,-1,-1));
         fondo.add(fondo.menu,new AbsoluteConstraints(0,0,-1,-1));
         fondo.add(fondo.agregarCiudad,new AbsoluteConstraints(0,0,-1,-1));
@@ -83,13 +105,23 @@ public class VistaControl implements ActionListener{
         fondo.add(fondo.agregarVillano,new AbsoluteConstraints(0,0,-1,-1));
         fondo.add(fondo.agregarHeroe,new AbsoluteConstraints(0,0,-1,-1));
         fondo.add(fondo.preJuego,new AbsoluteConstraints(0,0,-1,-1));
+        fondo.add(fondo.juego,new AbsoluteConstraints(0,0,-1,-1));
+        
     }
     
-    public void sonidoBotones () {
+    /**
+     * Llama el metodo sonidoBotones de la clase
+     * sonido para reproducir el sonido de los 
+     * botones
+     */
+    private void sonidoBotones () {
         sonido.sonidoBotones(fondo.clip);
     }
     
-    public void buscarRuta() {
+    /**
+     * Crea un FileDialog para buscar la ruta de una imagen
+     */
+    private void buscarRuta() {
         FileDialog fd = new FileDialog(fondo, "Busqueda", FileDialog.LOAD);
         fd.setDirectory("C:\\");
         fd.setFile("*.jpg");
@@ -101,7 +133,10 @@ public class VistaControl implements ActionListener{
         }
     }
     
-    public void moverImagen(){
+    /**
+     * Mueve una imagen seleccionada a la capeta image del proecto
+     */
+    private void moverImagen(){
         try {
             if (!fondo.agregarCiudad.jTextFieldNombreCiudad.getText().equals("")){
                 imagenes.moverArchivo(fondo.agregarCiudad.jTextFieldRutaCiudad.getText());
@@ -113,19 +148,42 @@ public class VistaControl implements ActionListener{
         }
     }
     
-    public void cambiarNombre() {
+    private void cambiarNombre() {
         
     }
     
-    public void ponerImagePreviewMapa(int x, int y){
-        String imagen = fondo.preJuego.Ciudades.getSelectedValue();
-        if (!imagen.equals("")){
-            fondo.preJuego.jLabelPreviewMapa.setIcon(imagenes.modificarTamanioImagen(fondo.preJuego.Ciudades.getSelectedValue(), x, y));
+    /**
+     * Coloca la imagen en el label de tamaño cambiante enviado.
+     * @param x Un entero del alto de la imagen
+     * @param y Un entero del ancho de la imagen
+     * @param fichero Un string de la exteción de la imagen
+     * @param actual El label al cual se le pondra la imagen
+     * @param imagen Un String del nombre de la imagen
+     */
+    private void ponerImagePreview(int x, int y, String fichero, JLabel actual,String imagen){
+        if (!(imagen == null)){
+            actual.setIcon(imagenes.modificarTamanioImagen(imagen, x, y, fichero));
         } else {
-            JOptionPane.showMessageDialog(fondo,"Debe escoger una ciudad.","Escoca",JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(fondo,"Debe escoger una opcion.","Escoca",JOptionPane.WARNING_MESSAGE);
         }
     }
     
+    /**
+     * Pone las imagenes a los label de los pj y la ciudad en el panel Juego
+     */
+    private void ponerImagenJuego() {
+        fondo.juego.jLabelCiudad.setIcon(imagenes.modificarTamanioImagen(fondo.preJuego.Ciudades.getSelectedValue(), 1200, 610, ".jpg"));
+        fondo.juego.jLabelPJ1.setIcon(imagenes.modificarTamanioImagen("blop1", 210, 230, ".png"));
+        //Image image = imagenes.modificarTamanioImagen("capitan1", 210, 230, ".png").getImage();
+        fondo.juego.jLabelPJ2.setIcon(imagenes.voltearImagen("capitan1", 210, 230, ".png"));
+    }
+    
+    
+    /**
+     * Se encarga de recibir el mensaje del evento y relizar la accion
+     * referente
+     * @param e El ActionEvent del cual se extraera el mensaje
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         String mensaje = e.getActionCommand();
@@ -142,6 +200,8 @@ public class VistaControl implements ActionListener{
                 sonidoBotones();
                 fondo.agregarCiudad.setVisible(true);
                 fondo.menu.setVisible(false);
+                fondo.agregarCiudad.jTextFieldNombreCiudad.setText("");
+                fondo.agregarCiudad.jTextFieldRutaCiudad.setText("");
                 break;
             case "BuscarRuta":
                 sonidoBotones();
@@ -220,7 +280,33 @@ public class VistaControl implements ActionListener{
                 break;
             case "PreviewMapaPreJuego":
                 sonidoBotones();
-                ponerImagePreviewMapa(460, 270);
+                ponerImagePreview(460, 270, ".jpg", fondo.preJuego.jLabelPreviewMapa,fondo.preJuego.Ciudades.getSelectedValue());
+                break;
+            case "PreviewPJ1":
+                sonidoBotones();
+                ponerImagePreview(220,180,".png",fondo.preJuego.jLabelPreviewPJ1,"blop1");
+                break;
+            case "PreviewPJ2":
+                sonidoBotones();
+                ponerImagePreview(220,180,".png",fondo.preJuego.jLabelPreviewPJ2,"capitan1");
+                break;
+            case "Partida":
+                sonidoBotones();
+                fondo.juego.setVisible(true);
+                fondo.preJuego.setVisible(false);
+                ponerImagenJuego();
+                break;
+            case "AtrasJuego":
+                sonidoBotones();
+                fondo.preJuego.setVisible(true);
+                fondo.juego.setVisible(false);
+                break;
+            case "Duelo":
+                sonidoBotones();
+                animaciones1.actualizarActual(fondo.juego.jLabelPJ1,"blop");
+                animaciones1.correr();
+                animaciones2.actualizarActual(fondo.juego.jLabelPJ2,"capitan");
+                animaciones2.correr();
                 break;
         }
     }

@@ -1,24 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * @author Tim Scarlith H.
+ * @author Josué Torre N.
+ * @version 1.0
  */
 package controlador;
-import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.RenderingHints;
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.*;
 import javax.imageio.ImageIO;
-import java.io.File.*;
 import javax.swing.ImageIcon; 
-
-/**
- *
- * @author peperony
- */
 public class Imagenes {    
     //Constante para un ancho máximo de imagen
     private final int maxAncho = 900;
@@ -47,11 +41,14 @@ public class Imagenes {
     
     /**
     * Funcion la cual modifica el tamanio de una image y retrona un ImageIcon
-    * @param filePath cadena de caracteres la cual representa la ruta de la imagen.
-    * @return 
+     * @param imagen Un string del nombre de la imagen
+     * @param x Un entero de lo alto de la imagen
+     * @param y Un entero de el ancho de la imagen
+     * @param fichero Un string de la extención de la imagen
+     * @return Un ImageIcon con el tamaño esperado
     */
-    public  ImageIcon modificarTamanioImagen(String imagen, int x, int y) {
-        ImageIcon image = new ImageIcon(getClass().getResource("/image/"+imagen+".jpg"));
+    public  ImageIcon modificarTamanioImagen(String imagen, int x, int y, String fichero) {
+        ImageIcon image = new ImageIcon(getClass().getResource("/image/"+imagen+fichero));
         
         Image conversion = image.getImage();
         
@@ -61,6 +58,20 @@ public class Imagenes {
         
         return nFinal;
         
+    }
+    
+    public ImageIcon voltearImagen (String imagen, int x, int y, String fichero) throws IOException {
+        BufferedImage  temp;
+        temp = ImageIO.read(new File (getClass().getResource("/image/"+imagen+fichero).getPath()));
+        AffineTransform tx = AffineTransform.getScaleInstance(-1, 1);
+        tx.translate(-temp.getWidth(null), 0);
+        AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
+        temp = op.filter(temp, null);
+        ImageIcon image = new ImageIcon(temp);
+        Image image1 = image.getImage();
+        image1 = image1.getScaledInstance(x, y, Image.SCALE_SMOOTH);
+        return  new ImageIcon(image1);
+
     }
     
     /**
