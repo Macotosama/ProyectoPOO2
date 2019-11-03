@@ -29,6 +29,36 @@ public class AgregarAntiheroe extends javax.swing.JPanel {
 
         jButtonSalir = new javax.swing.JButton();
         jButtonAtrasCargarAntiheroe = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jListCiudades = new javax.swing.JList<>();
+        jButtonCiudades = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        jTextFieldNombre = new javax.swing.JTextField();
+        jTextFieldEdad = new javax.swing.JTextField();
+        jTextField1Sexo = new javax.swing.JTextField();
+        jTextFieldAltura = new javax.swing.JTextField();
+        jTextFieldOrigen = new javax.swing.JTextField();
+        jTextFieldCercana = new javax.swing.JTextField();
+        jTextFieldOcupacion = new javax.swing.JTextField();
+        jTextFieldSexualidad = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jListArchienemigo = new javax.swing.JList<>();
+        jLabelEnemigo = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        jLabel11 = new javax.swing.JLabel();
+        jTextFieldDireccion = new javax.swing.JTextField();
+        jButtonBusacarDireccion = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
+        jTextFieldNombreAntriheroe = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -47,6 +77,181 @@ public class AgregarAntiheroe extends javax.swing.JPanel {
         jButtonAtrasCargarAntiheroe.setFocusPainted(false);
         add(jButtonAtrasCargarAntiheroe, new org.netbeans.lib.awtextra.AbsoluteConstraints(1240, 700, -1, -1));
 
+        jLabel2.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel2.setFont(new java.awt.Font("Arial Black", 3, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 255));
+        jLabel2.setText("Nombre:");
+        jLabel2.setOpaque(true);
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 290, 30));
+
+        jLabel3.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel3.setFont(new java.awt.Font("Arial Black", 3, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 255));
+        jLabel3.setText("Edad:");
+        jLabel3.setOpaque(true);
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 290, 30));
+
+        jLabel4.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel4.setFont(new java.awt.Font("Arial Black", 3, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 255));
+        jLabel4.setText("Sexo:");
+        jLabel4.setOpaque(true);
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 290, 30));
+
+        jLabel5.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel5.setFont(new java.awt.Font("Arial Black", 3, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 0, 255));
+        jLabel5.setText("Altura:");
+        jLabel5.setOpaque(true);
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 290, 30));
+
+        jLabel6.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel6.setFont(new java.awt.Font("Arial Black", 3, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 0, 255));
+        jLabel6.setText("Ciudad origen:");
+        jLabel6.setOpaque(true);
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 290, 30));
+
+        jLabel8.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel8.setFont(new java.awt.Font("Arial Black", 3, 18)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 0, 255));
+        jLabel8.setText("Ocupación:");
+        jLabel8.setOpaque(true);
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, 290, 30));
+
+        jLabel9.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel9.setFont(new java.awt.Font("Arial Black", 3, 18)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(0, 0, 255));
+        jLabel9.setText("Orientación sexual:");
+        jLabel9.setOpaque(true);
+        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 400, 290, 30));
+
+        jLabel10.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel10.setFont(new java.awt.Font("Arial Black", 3, 18)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(0, 0, 255));
+        jLabel10.setText("Nombre persoan cercana:");
+        jLabel10.setOpaque(true);
+        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, 290, 30));
+
+        jListCiudades.setBackground(new java.awt.Color(0, 0, 0));
+        jListCiudades.setFont(new java.awt.Font("Arial Black", 3, 11)); // NOI18N
+        jListCiudades.setForeground(new java.awt.Color(204, 0, 0));
+        jListCiudades.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(jListCiudades);
+
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 450, 110, 170));
+
+        jButtonCiudades.setBackground(new java.awt.Color(0, 0, 0));
+        jButtonCiudades.setFont(new java.awt.Font("Arial Black", 3, 18)); // NOI18N
+        jButtonCiudades.setForeground(new java.awt.Color(204, 0, 0));
+        jButtonCiudades.setText("Ciudad");
+        add(jButtonCiudades, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 630, 290, -1));
+
+        jLabel7.setOpaque(true);
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 450, 340, 170));
+
+        jTextFieldNombre.setBackground(new java.awt.Color(0, 0, 0));
+        jTextFieldNombre.setFont(new java.awt.Font("Arial Black", 3, 18)); // NOI18N
+        jTextFieldNombre.setForeground(new java.awt.Color(204, 0, 0));
+        jTextFieldNombre.setToolTipText("");
+        add(jTextFieldNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 50, 310, -1));
+
+        jTextFieldEdad.setBackground(new java.awt.Color(0, 0, 0));
+        jTextFieldEdad.setFont(new java.awt.Font("Arial Black", 3, 18)); // NOI18N
+        jTextFieldEdad.setForeground(new java.awt.Color(204, 0, 0));
+        add(jTextFieldEdad, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 100, 310, -1));
+
+        jTextField1Sexo.setBackground(new java.awt.Color(0, 0, 0));
+        jTextField1Sexo.setFont(new java.awt.Font("Arial Black", 3, 18)); // NOI18N
+        jTextField1Sexo.setForeground(new java.awt.Color(204, 0, 0));
+        add(jTextField1Sexo, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 150, 310, -1));
+
+        jTextFieldAltura.setBackground(new java.awt.Color(0, 0, 0));
+        jTextFieldAltura.setFont(new java.awt.Font("Arial Black", 3, 18)); // NOI18N
+        jTextFieldAltura.setForeground(new java.awt.Color(204, 0, 0));
+        add(jTextFieldAltura, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 200, 310, -1));
+
+        jTextFieldOrigen.setBackground(new java.awt.Color(0, 0, 0));
+        jTextFieldOrigen.setFont(new java.awt.Font("Arial Black", 3, 18)); // NOI18N
+        jTextFieldOrigen.setForeground(new java.awt.Color(204, 0, 0));
+        add(jTextFieldOrigen, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 250, 310, -1));
+
+        jTextFieldCercana.setBackground(new java.awt.Color(0, 0, 0));
+        jTextFieldCercana.setFont(new java.awt.Font("Arial Black", 3, 18)); // NOI18N
+        jTextFieldCercana.setForeground(new java.awt.Color(204, 0, 0));
+        add(jTextFieldCercana, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 300, 310, -1));
+
+        jTextFieldOcupacion.setBackground(new java.awt.Color(0, 0, 0));
+        jTextFieldOcupacion.setFont(new java.awt.Font("Arial Black", 3, 18)); // NOI18N
+        jTextFieldOcupacion.setForeground(new java.awt.Color(204, 0, 0));
+        add(jTextFieldOcupacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 350, 310, -1));
+
+        jTextFieldSexualidad.setBackground(new java.awt.Color(0, 0, 0));
+        jTextFieldSexualidad.setFont(new java.awt.Font("Arial Black", 3, 18)); // NOI18N
+        jTextFieldSexualidad.setForeground(new java.awt.Color(204, 0, 0));
+        add(jTextFieldSexualidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 400, 310, -1));
+
+        jListArchienemigo.setBackground(new java.awt.Color(0, 0, 0));
+        jListArchienemigo.setFont(new java.awt.Font("Arial Black", 3, 11)); // NOI18N
+        jListArchienemigo.setForeground(new java.awt.Color(204, 0, 0));
+        jListArchienemigo.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane2.setViewportView(jListArchienemigo);
+
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 50, 120, 150));
+
+        jLabelEnemigo.setOpaque(true);
+        add(jLabelEnemigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 50, 180, 150));
+
+        jButton2.setBackground(new java.awt.Color(0, 0, 0));
+        jButton2.setFont(new java.awt.Font("Arial Black", 3, 18)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(204, 0, 0));
+        jButton2.setText("Archienemigo");
+        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 210, 310, -1));
+
+        jLabel11.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel11.setFont(new java.awt.Font("Arial Black", 3, 18)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(0, 0, 204));
+        jLabel11.setText("Direccion:");
+        jLabel11.setOpaque(true);
+        add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 310, 120, -1));
+
+        jTextFieldDireccion.setBackground(new java.awt.Color(0, 0, 0));
+        jTextFieldDireccion.setFont(new java.awt.Font("Arial Black", 3, 18)); // NOI18N
+        jTextFieldDireccion.setForeground(new java.awt.Color(204, 0, 0));
+        add(jTextFieldDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 350, 410, -1));
+
+        jButtonBusacarDireccion.setBackground(new java.awt.Color(0, 0, 0));
+        jButtonBusacarDireccion.setFont(new java.awt.Font("Arial Black", 3, 18)); // NOI18N
+        jButtonBusacarDireccion.setForeground(new java.awt.Color(204, 0, 0));
+        jButtonBusacarDireccion.setText("Buscar");
+        add(jButtonBusacarDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 400, 190, -1));
+
+        jButton1.setBackground(new java.awt.Color(0, 0, 0));
+        jButton1.setFont(new java.awt.Font("Arial Black", 3, 36)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(204, 0, 0));
+        jButton1.setText("Guardar");
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 590, 420, -1));
+
+        jLabel12.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel12.setFont(new java.awt.Font("Arial Black", 3, 18)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(0, 0, 204));
+        jLabel12.setText("Nombre de Antriheroe:");
+        jLabel12.setOpaque(true);
+        add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 450, 250, -1));
+
+        jTextFieldNombreAntriheroe.setBackground(new java.awt.Color(0, 0, 0));
+        jTextFieldNombreAntriheroe.setFont(new java.awt.Font("Arial Black", 3, 18)); // NOI18N
+        jTextFieldNombreAntriheroe.setForeground(new java.awt.Color(204, 0, 0));
+        add(jTextFieldNombreAntriheroe, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 490, 400, -1));
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/AgregarAntiheroe.jpg"))); // NOI18N
         jLabel1.setToolTipText("");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -54,8 +259,38 @@ public class AgregarAntiheroe extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    public javax.swing.JButton jButton2;
     public javax.swing.JButton jButtonAtrasCargarAntiheroe;
+    public javax.swing.JButton jButtonBusacarDireccion;
+    public javax.swing.JButton jButtonCiudades;
     public javax.swing.JButton jButtonSalir;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    public javax.swing.JLabel jLabelEnemigo;
+    public javax.swing.JList<String> jListArchienemigo;
+    public javax.swing.JList<String> jListCiudades;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    public javax.swing.JTextField jTextField1Sexo;
+    public javax.swing.JTextField jTextFieldAltura;
+    public javax.swing.JTextField jTextFieldCercana;
+    public javax.swing.JTextField jTextFieldDireccion;
+    public javax.swing.JTextField jTextFieldEdad;
+    public javax.swing.JTextField jTextFieldNombre;
+    public javax.swing.JTextField jTextFieldNombreAntriheroe;
+    public javax.swing.JTextField jTextFieldOcupacion;
+    public javax.swing.JTextField jTextFieldOrigen;
+    public javax.swing.JTextField jTextFieldSexualidad;
     // End of variables declaration//GEN-END:variables
 }

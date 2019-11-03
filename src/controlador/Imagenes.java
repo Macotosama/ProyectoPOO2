@@ -11,6 +11,8 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon; 
 public class Imagenes {    
@@ -60,18 +62,21 @@ public class Imagenes {
         
     }
     
-    public ImageIcon voltearImagen (String imagen, int x, int y, String fichero) throws IOException {
-        BufferedImage  temp;
-        temp = ImageIO.read(new File (getClass().getResource("/image/"+imagen+fichero).getPath()));
-        AffineTransform tx = AffineTransform.getScaleInstance(-1, 1);
-        tx.translate(-temp.getWidth(null), 0);
-        AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
-        temp = op.filter(temp, null);
-        ImageIcon image = new ImageIcon(temp);
-        Image image1 = image.getImage();
-        image1 = image1.getScaledInstance(x, y, Image.SCALE_SMOOTH);
-        return  new ImageIcon(image1);
-
+    public ImageIcon voltearImagen (String imagen, int x, int y, String fichero){
+        try {
+            BufferedImage  temp;
+            temp = ImageIO.read(new File (getClass().getResource("/image/"+imagen+fichero).getPath()));
+            AffineTransform tx = AffineTransform.getScaleInstance(-1, 1);
+            tx.translate(-temp.getWidth(null), 0);
+            AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
+            temp = op.filter(temp, null);
+            ImageIcon image = new ImageIcon(temp);
+            Image image1 = image.getImage();
+            image1 = image1.getScaledInstance(x, y, Image.SCALE_SMOOTH);
+            return  new ImageIcon(image1);
+        } catch (IOException ex) {
+            return null;
+        }
     }
     
     /**
