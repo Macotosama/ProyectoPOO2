@@ -34,6 +34,7 @@ public class DocumentXML {
     private Document doc;
     private Element raiz;
     
+    
     public DocumentXML() {
         try {
             docFactory = DocumentBuilderFactory.newInstance();
@@ -45,6 +46,9 @@ public class DocumentXML {
         }
     }
     
+    /**
+     * Metodo para crear el archivo XML que contendrá los datos del juego
+     */
     private void crearXml() {
         try {
             docFactory = DocumentBuilderFactory.newInstance();
@@ -66,6 +70,11 @@ public class DocumentXML {
         }
     }
     
+    /**
+     * Metodo para registrar una persona cercana
+     * @param pNombre
+     * @param pNombreCiudad 
+     */
     public void registrarPersona(String pNombre, String pNombreCiudad) {
         try {
             File fXmlFile = new File("Data.xml");
@@ -98,7 +107,7 @@ public class DocumentXML {
             Element nombre = doc.createElement("Nombre");
             nombre.appendChild(doc.createTextNode(pNombre));
             Element estado=doc.createElement("Estado");
-            estado.appendChild(doc.createTextNode(""));
+            estado.appendChild(doc.createTextNode("."));
            
 
             personaje.appendChild(nombre);
@@ -126,6 +135,12 @@ public class DocumentXML {
             
     }
     
+    /**
+     * Metodo para editar el estado de la persona cercana 
+     * @param pNombrePersona
+     * @param pNombreCiudad
+     * @param pEstado 
+     */
     public void editarEstado(String pNombrePersona,String pNombreCiudad,String pEstado) {
         try {
             File fXmlFile = new File("Data.xml");
@@ -143,13 +158,13 @@ public class DocumentXML {
                 }  
             }
            NodeList personas=ciudad.getElementsByTagName("PersonaCercana");
-           System.out.println(personas.item(0).getTextContent());
            for (int i=0;i!=personas.getLength();i++) {
                Element temp2=(Element) personas.item(i);
                NodeList nombre = temp2.getElementsByTagName("Nombre");
-               System.out.println(nombre.item(0).getTextContent()); //.item(0).getTextContent());
-               //if (temp2.getElementsByTagName("Nombre").item(0).getTextContent().equals(pNombrePersona)) temp2.getElementsByTagName("Estado").item(0).setTextContent(pEstado);
-              // break;
+               if (nombre.item(0).getTextContent().equals(pNombrePersona)) {
+                   NodeList estado=temp2.getElementsByTagName("Estado");
+                   estado.item(0).setTextContent(pEstado);
+               }
                   
            }
            TransformerFactory transformerFactory = TransformerFactory.newInstance();
@@ -168,6 +183,22 @@ public class DocumentXML {
         }
     }
     
+    /**
+     * Metodo para registrar un personaje heroe en el XML
+     * @param pNombre
+     * @param pEdad
+     * @param pSexo
+     * @param pAltura
+     * @param pCiudadOrigen
+     * @param pNombreCiudad
+     * @param pOcupacion
+     * @param pOrientacionSexual
+     * @param pPersonaCercana
+     * @param pImg
+     * @param pID
+     * @param pNombreHeroe
+     * @param pArchiEnemigo 
+     */
     public void registrarHeroe(String pNombre, int pEdad, String pSexo, float pAltura, String pCiudadOrigen, String pNombreCiudad,
             String pOcupacion, String pOrientacionSexual,Personaje pPersonaCercana, String pImg, int pID, String pNombreHeroe, String pArchiEnemigo) {
         try {
@@ -231,6 +262,22 @@ public class DocumentXML {
             
     }
     
+    /**
+     * Metodo para registrar un AntiHeroe en el XML
+     * @param pNombre
+     * @param pEdad
+     * @param pSexo
+     * @param pAltura
+     * @param pCiudadOrigen
+     * @param pNombreCiudad
+     * @param pOcupacion
+     * @param pOrientacionSexual
+     * @param pPersonaCercana
+     * @param pImg
+     * @param pID
+     * @param pNombreAntiHeroe
+     * @param pArchiEnemigo 
+     */
     public void registrarAntiHeroe(String pNombre, int pEdad, String pSexo, float pAltura, String pCiudadOrigen, String pNombreCiudad,
             String pOcupacion, String pOrientacionSexual,Personaje pPersonaCercana, String pImg, int pID, String pNombreAntiHeroe, String pArchiEnemigo) {
         try {
@@ -251,7 +298,6 @@ public class DocumentXML {
                 }
                 
             }
-            //registrarPersonaje(pNombre, pEdad, pSexo, pAltura, pCiudadOrigen,pOcupacion,pOrientacionSexual,pPersonaCercana,pImg,pID,0,0,ciudad,doc);
             NodeList nList = ciudad.getElementsByTagName("AntiHeroes");
             Element personajeRaiz=doc.createElement("AntiHeroes");
             int cont=0;
@@ -292,8 +338,25 @@ public class DocumentXML {
         }
     }
     
+    /**
+     * Metodo para registrar un villano en el XML
+     * @param pNombre
+     * @param pEdad
+     * @param pSexo
+     * @param pAltura
+     * @param pCiudadOrigen
+     * @param pNombreCiudad
+     * @param pOcupacion
+     * @param pOrientacionSexual
+     * @param pPersonaCercana
+     * @param pImg
+     * @param pID
+     * @param pNombreVillano
+     * @param pArchiEnemigo 
+     * @param pTipo
+     */
     public void registrarVillano(String pNombre, int pEdad, String pSexo, float pAltura, String pCiudadOrigen, String pNombreCiudad,
-            String pOcupacion, String pOrientacionSexual,Personaje pPersonaCercana, String pImg, int pID, String pNombreVillano, String pArchiEnemigo) {
+            String pOcupacion, String pOrientacionSexual,Personaje pPersonaCercana, String pImg, int pID, String pNombreVillano, String pArchiEnemigo,String pTipo) {
         try {
             File fXmlFile = new File("Data.xml");
             DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
@@ -329,8 +392,11 @@ public class DocumentXML {
             Element archiEnemigo=doc.createElement("ArchiEnemigo");
             archiEnemigo.appendChild(doc.createTextNode(pArchiEnemigo));
             registrarPersonaje(pNombre, pEdad, pSexo, pAltura, pCiudadOrigen,pOcupacion,pOrientacionSexual,pPersonaCercana,pImg,pID,0,0,villano,doc);
+            Element tipo=doc.createElement("Tipo");
+            tipo.appendChild(doc.createTextNode(pTipo));
             villano.appendChild(nombre);
             villano.appendChild(archiEnemigo);
+            villano.appendChild(tipo);
             personajeRaiz.appendChild(villano);
             if (nList.getLength()==0) ciudad.appendChild(personajeRaiz);
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
@@ -349,7 +415,24 @@ public class DocumentXML {
             Logger.getLogger(DocumentXML.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-        
+    
+    /**
+     * Metodo para registrar la informacion de persona normal de cualquiera de los 3 posibles personajes(heroe,antiheroe y villanos)
+     * @param pNombre
+     * @param pEdad
+     * @param pSexo
+     * @param pAltura
+     * @param pCiudadOrigen
+     * @param pOcupacion
+     * @param pOrientacionSexual
+     * @param pPersonaCercana
+     * @param pImg
+     * @param pID
+     * @param pGanes
+     * @param pPerdidos
+     * @param pNombreCiudad
+     * @param doc 
+     */
     public void registrarPersonaje(String pNombre, int pEdad, String pSexo, float pAltura, String pCiudadOrigen,
             String pOcupacion, String pOrientacionSexual,Personaje pPersonaCercana, String pImg, int pID,int pGanes, int pPerdidos,Element pNombreCiudad, Document doc) {
         Element personaje=pNombreCiudad;
@@ -396,7 +479,12 @@ public class DocumentXML {
         
     }
     
-
+    /**
+     * Metodo para registrar ciudades en el XML
+     * @param pIndiceCriminalidad
+     * @param pNombreCiudad
+     * @param pImg 
+     */
     public void registrarCiudad(double pIndiceCriminalidad, String pNombreCiudad, String pImg) {
         try {
             File fXmlFile = new File("Data.xml");
@@ -448,6 +536,12 @@ public class DocumentXML {
             
     }
     
+    /**
+     * Metodo para verificar la existencia de un heroe XML
+     * @param pNombre
+     * @param pCiudad
+     * @return Un valor boolean
+     */
     public boolean buscarHeroe(String pNombre, String pCiudad) {
         try {
             File fXmlFile = new File("Data.xml");
@@ -484,6 +578,12 @@ public class DocumentXML {
         return false;
     }
     
+    /**
+     * Metodo para verificar la existencia de un Antiheroe XML
+     * @param pNombre
+     * @param pCiudad
+     * @return Un valor boolean
+     */
     public boolean buscarAntiHeroe(String pNombre, String pCiudad) {
         try {
             File fXmlFile = new File("Data.xml");
@@ -520,6 +620,12 @@ public class DocumentXML {
         return false;
     }
     
+    /**
+     * Metodo para verificar la existencia de un villano en el XML
+     * @param pNombre
+     * @param pCiudad
+     * @return Un valor boolean
+     */
     public boolean buscarVillano(String pNombre, String pCiudad) {
         try {
             File fXmlFile = new File("Data.xml");
@@ -556,6 +662,10 @@ public class DocumentXML {
         return false;
     }
     
+    /**
+     * Metodo que genera un lista de las ciudades existentes
+     * @return Un Arreglo de ciudades
+     */
     public ArrayList<Ciudad> listaCiudades() {
         ArrayList<Ciudad> lista=new ArrayList<>();
         try {
@@ -586,6 +696,12 @@ public class DocumentXML {
         }
         return lista;
     }
+    
+    /**
+     * Metodo que genera una lista de los heroes existentes
+     * @param pCiudad
+     * @return Un arreglo de heroes
+     */
     public ArrayList<Heroe> listaHeroes(String pCiudad) {
         ArrayList<Heroe> lista=new ArrayList<>();
         try {
@@ -646,6 +762,12 @@ public class DocumentXML {
         }
         return lista;
     }
+    
+    /**
+     * Metodo que genera una lista de los antiheroes existentes
+     * @param pCiudad
+     * @return Un arreglo de antiheroes
+     */
     public ArrayList<AntiHeroe> listaAntiHeroes(String pCiudad) {
         ArrayList<AntiHeroe> lista=new ArrayList<>();
         try {
@@ -708,6 +830,12 @@ public class DocumentXML {
         }
         return lista;
     }
+    
+    /**
+     * Metodo que genera una lista de villanos existentes
+     * @param pCiudad
+     * @return Un arreglo de villano
+     */
     public ArrayList<Villano> listaVillanos(String pCiudad) {
         ArrayList<Villano> lista=new ArrayList<>();
         try {
@@ -771,6 +899,11 @@ public class DocumentXML {
         return lista;
     }
     
+    /**
+     * Metodo que genera una lista de las personas cercanas existentes
+     * @param pCiudad
+     * @return Un arreglo de las personajes
+     */
     public ArrayList<Personaje> listaPersona(String pCiudad) {
         ArrayList<Personaje> lista=new ArrayList<>();
         try {
@@ -811,7 +944,11 @@ public class DocumentXML {
         return lista;
     }
  
-    
+    /**
+     * Metodo para editar el nombre de una ciudad 
+     * @param pCiudad
+     * @param pNombre 
+     */
     public void editarCiudad(String pCiudad,String pNombre) {
         try {
             File fXmlFile = new File("Data.xml");
@@ -845,6 +982,12 @@ public class DocumentXML {
             Logger.getLogger(DocumentXML.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    /**
+     * Metodo para editar el indice de criminalidad de una ciudad
+     * @param pCiudad
+     * @param pIndice 
+     */
     public void editarCiudad(String pCiudad,double pIndice) {
         try {
             File fXmlFile = new File("Data.xml");
@@ -879,30 +1022,119 @@ public class DocumentXML {
         }
     }
     
-    public boolean buscarPersona(String pNombre) {
+    /**
+     * Metodo para actualizar la cuenta de los eventos ganados y perdidos de un personaje
+     * @param pNombreCiudad
+     * @param pNombre
+     * @param bandera 
+     */
+    public void actualizarGane(String pNombreCiudad,String pNombre,int bandera) {
         try {
             File fXmlFile = new File("Data.xml");
             DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
             doc=docBuilder.parse(fXmlFile);
-            NodeList nList = doc.getElementsByTagName("PersonaCercana");    
-            for (int i = 0;i!=nList.getLength() ; i++) {
-                Node nNode = nList.item(i);
-                if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-                    Element heroe = (Element) nNode;
-                    if (heroe.getFirstChild().getTextContent().equals(pNombre)) {
-                       return true;   
-                    }
-                }
+            NodeList rootCiudad=doc.getElementsByTagName("Ciudad");
+            Element ciudad=doc.createElement("Actual");
+           for (int i=0;i!=rootCiudad.getLength();i++) {
+                Element temp =(Element) rootCiudad.item(i);
+                NodeList nombre = temp.getElementsByTagName("Nombre");       
+                
+                if (nombre.item(0).getTextContent().equals(pNombreCiudad)) {
+                    ciudad=temp;
+                }   
             }
-            return false;
+           NodeList personajes=null;
+           switch (bandera) {
+               case 1:
+                   personajes=ciudad.getElementsByTagName("Heroe");
+                   break;
+               case 2:
+                   personajes=ciudad.getElementsByTagName("ArchiEnemigo");
+                   break;
+               case 3:
+                   personajes=ciudad.getElementsByTagName("Villano");
+                   break;
+               default:
+                   break;
+           }
+           for (int i=0;i!=personajes.getLength();i++) {
+               Element personaje=(Element) personajes.item(0);
+               if (personaje.getElementsByTagName("Nombre").item(0).getTextContent().equals(pNombre)) {
+                   personaje.getElementsByTagName("CantidadEventosGanados").item(0).setTextContent(String.valueOf(Integer.parseInt(personaje.getElementsByTagName("CantidadEventosGanados").item(0).getTextContent())+1));
+               }
+           }
+           TransformerFactory transformerFactory = TransformerFactory.newInstance();
+           Transformer transformer = transformerFactory.newTransformer();
+           StreamResult result = new StreamResult("Data.xml");
+           DOMSource source = new DOMSource(doc);
+           transformer.transform(source, result);
         }catch (ParserConfigurationException ex) {
             Logger.getLogger(DocumentXML.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SAXException ex) {
             Logger.getLogger(DocumentXML.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(DocumentXML.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (TransformerException ex) {
+            Logger.getLogger(DocumentXML.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return false;
+    }
+    
+    /**
+     * Metodo para actualizar la cuenta de los eventos perdidos de un personaje 
+     * @param pNombreCiudad
+     * @param pNombre
+     * @param bandera 
+     */
+    public void actualizarPerdido(String pNombreCiudad,String pNombre,int bandera) {
+        try {
+            File fXmlFile = new File("Data.xml");
+            DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+            doc=docBuilder.parse(fXmlFile);
+            NodeList rootCiudad=doc.getElementsByTagName("Ciudad");
+            Element ciudad=doc.createElement("Actual");
+           for (int i=0;i!=rootCiudad.getLength();i++) {
+                Element temp =(Element) rootCiudad.item(i);
+                NodeList nombre = temp.getElementsByTagName("Nombre");       
+                
+                if (nombre.item(0).getTextContent().equals(pNombreCiudad)) {
+                    ciudad=temp;
+                }   
+            }
+           NodeList personajes=null;
+           switch (bandera) {
+               case 1:
+                   personajes=ciudad.getElementsByTagName("Heroe");
+                   break;
+               case 2:
+                   personajes=ciudad.getElementsByTagName("ArchiEnemigo");
+                   break;
+               case 3:
+                   personajes=ciudad.getElementsByTagName("Villano");
+                   break;
+               default:
+                   break;
+           }
+           for (int i=0;i!=personajes.getLength();i++) {
+               Element personaje=(Element) personajes.item(0);
+               if (personaje.getElementsByTagName("Nombre").item(0).getTextContent().equals(pNombre)) {
+                   personaje.getElementsByTagName("CantidadEventosPerdidos").item(0).setTextContent(String.valueOf(Integer.parseInt(personaje.getElementsByTagName("CantidadEventosPerdidos").item(0).getTextContent())+1));
+               }
+           }
+           TransformerFactory transformerFactory = TransformerFactory.newInstance();
+           Transformer transformer = transformerFactory.newTransformer();
+           StreamResult result = new StreamResult("Data.xml");
+           DOMSource source = new DOMSource(doc);
+           transformer.transform(source, result);
+        }catch (ParserConfigurationException ex) {
+            Logger.getLogger(DocumentXML.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SAXException ex) {
+            Logger.getLogger(DocumentXML.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(DocumentXML.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (TransformerException ex) {
+            Logger.getLogger(DocumentXML.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

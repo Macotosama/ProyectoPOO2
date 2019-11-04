@@ -59,6 +59,9 @@ public class AgregarVillano extends javax.swing.JPanel {
         jButtonGuardar = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
         jTextFieldNombreVillano = new javax.swing.JTextField();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jListTipo = new javax.swing.JList<>();
+        jLabel10 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -263,6 +266,25 @@ public class AgregarVillano extends javax.swing.JPanel {
         jTextFieldNombreVillano.setForeground(new java.awt.Color(204, 0, 0));
         add(jTextFieldNombreVillano, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 470, 390, -1));
 
+        jListTipo.setBackground(new java.awt.Color(0, 0, 0));
+        jListTipo.setFont(new java.awt.Font("Arial Black", 3, 11)); // NOI18N
+        jListTipo.setForeground(new java.awt.Color(0, 0, 204));
+        jListTipo.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "social", "economico" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane3.setViewportView(jListTipo);
+
+        add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 510, 100, 50));
+
+        jLabel10.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel10.setFont(new java.awt.Font("Arial Black", 3, 18)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(0, 0, 204));
+        jLabel10.setText("Tipo de villno");
+        jLabel10.setOpaque(true);
+        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 470, -1, -1));
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/AgregarVillano.jpg"))); // NOI18N
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
@@ -280,6 +302,7 @@ public class AgregarVillano extends javax.swing.JPanel {
     public javax.swing.JButton jButtonGuardar;
     public javax.swing.JButton jButtonSalir;
     private javax.swing.JLabel jLabel1;
+    public javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
@@ -294,8 +317,10 @@ public class AgregarVillano extends javax.swing.JPanel {
     public javax.swing.JLabel jLabelEnemigo;
     public javax.swing.JList<String> jListArchienemigo;
     public javax.swing.JList<String> jListCiudades;
+    public javax.swing.JList<String> jListTipo;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     public javax.swing.JTextField jTextFieldAltura;
     public javax.swing.JTextField jTextFieldDireccion;
     public javax.swing.JTextField jTextFieldEdad;

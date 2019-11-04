@@ -33,6 +33,9 @@ public class VistaControl implements ActionListener{
     private final Animacion animaciones1;
     private final Animacion animaciones2;
     private final Control control;
+    private int pelea;
+    private int max;
+    private int tipo;
     /**
      * Costructor de la clase
      */
@@ -43,6 +46,9 @@ public class VistaControl implements ActionListener{
         animaciones1 = new Animacion();
         animaciones2 = new Animacion();
         control = new Control();
+        pelea = 0;
+        max = 0;
+        tipo = 0;
     }
     
     /**
@@ -95,6 +101,8 @@ public class VistaControl implements ActionListener{
         this.fondo.agregarHeroe.jButtonArchienemigo.addActionListener(this);
         this.fondo.agregarHeroe.jButtonBuscar.addActionListener(this);
         this.fondo.agregarHeroe.jButtonGuardar.addActionListener(this);
+        this.fondo.editarCiudad.jButtonPreviewCiuedad.addActionListener(this);
+        this.fondo.editarCiudad.jButtonGuardar.addActionListener(this);
     }
     
     /**
@@ -292,7 +300,7 @@ public class VistaControl implements ActionListener{
             && !(fondo.agregarVillano.jTextFieldDireccion.getText().equals("")) && !(fondo.agregarVillano.jTextFieldNombre.getText().equals(""))
             && !(fondo.agregarVillano.jTextFieldOcupacion.getText().equals("")) && !(fondo.agregarVillano.jTextFieldOrientacionSexual.getText().equals(""))
             && !(fondo.agregarVillano.jTextFieldOrigen.getText().equals("")) && !(fondo.agregarVillano.jTextFieldPersonaCercana.getText().equals(""))
-            && !(fondo.agregarVillano.jTextFieldSexo.getText().equals("")) 
+            && !(fondo.agregarVillano.jTextFieldSexo.getText().equals("")) && (fondo.agregarVillano.jListTipo.getSelectedValue() != null)
             && (fondo.agregarVillano.jListCiudades.getSelectedValue() != null) && !(fondo.agregarVillano.jTextFieldNombreVillano.getText().equals(""))) {
             int pEdad = Integer.parseInt(fondo.agregarVillano.jTextFieldEdad.getText());
             float aAltura = Float.parseFloat(fondo.agregarVillano.jTextFieldAltura.getText());
@@ -306,11 +314,12 @@ public class VistaControl implements ActionListener{
             String pPersonaCercana = fondo.agregarVillano.jTextFieldPersonaCercana.getText();
             String pNombreVillano = fondo.agregarVillano.jTextFieldNombreVillano.getText();
             String pArchiEnemogo = fondo.agregarVillano.jListArchienemigo.getSelectedValue();
+            String pTipo = fondo.agregarVillano.jListTipo.getSelectedValue();
             int pID =  (int) (Math.random() * 1000);
             if (fondo.agregarVillano.jListArchienemigo.getSelectedValue() == null) {
                 pArchiEnemogo = "";
             }
-            control.registrarVillano(pNombre, pEdad, pSexo, aAltura, pCiudadOrigen, pNombreCiudad, pOcupacion, pOrientacionSexual, pPersonaCercana, pImg, pID, pNombreVillano, pArchiEnemogo);
+            control.registrarVillano(pNombre, pEdad, pSexo, aAltura, pCiudadOrigen, pNombreCiudad, pOcupacion, pOrientacionSexual, pPersonaCercana, pImg, pID, pNombreVillano, pArchiEnemogo,pTipo);
             moverImagen(fondo.agregarVillano.jTextFieldNombreVillano,fondo.agregarVillano.jTextFieldDireccion);
             cambiarNombreCiudad(fondo.agregarVillano.jTextFieldNombreVillano,fondo.agregarVillano.jTextFieldDireccion,".png");
         } else {
@@ -422,6 +431,89 @@ public class VistaControl implements ActionListener{
         fondo.preJuego.Ciudades.setModel(model);
         fondo.preJuego.jListPreviewPJ1.setModel( new DefaultListModel<>());
         fondo.preJuego.jListPreviewPJ2.setModel( new DefaultListModel<>());
+    }
+    
+    private void prepararPelea () {
+        if (control.buscarHeroePorCiudad(fondo.preJuego.Ciudades.getSelectedValue(),fondo.preJuego.jListPreviewPJ1.getSelectedValue())){
+            control.buscarVillanoPorCiudad(fondo.preJuego.Ciudades.getSelectedValue(),fondo.preJuego.jListPreviewPJ2.getSelectedValue());
+            Heroe temp = control.P11;
+            Villano temp2 = control.P2;
+            if (temp.getArchiEnemigo().equals(temp2.getNombreVillano())){
+                max = 7;
+            } else if (temp2.equals("social")) {
+                max = 5;
+            } else {
+                max = 3;
+            }
+        } else {
+            control.buscarAntiheroePorCiudad(fondo.preJuego.Ciudades.getSelectedValue(),fondo.preJuego.jListPreviewPJ1.getSelectedValue());
+            control.buscarVillanoPorCiudad(fondo.preJuego.Ciudades.getSelectedValue(),fondo.preJuego.jListPreviewPJ2.getSelectedValue());
+            AntiHeroe temp = control.P12;
+            Villano temp2 = control.P2;
+            if (temp.getArchiEnemigo().equals(temp2.getNombreVillano())){
+                max = 7;
+            } else if (temp2.equals("social")) {
+                max = 5;
+            } else {
+                max = 3;
+            }       
+        }
+    }
+    
+    private void pelea () {
+        if (pelea < max) {
+            animaciones1.actualizarActual(fondo.juego.jLabelPJ1,"blop");
+            animaciones1.correr1();
+            animaciones2.actualizarActual(fondo.juego.jLabelPJ2,"capitan");
+            animaciones2.correr2();           
+            int juego; 
+            if (control.esHeroe(fondo.preJuego.Ciudades.getSelectedValue(), fondo.preJuego.jListPreviewPJ1.getSelectedValue())){
+               juego = control.retornarPelea2(control.P11,control.P2);
+            } else {
+                juego = control.retornarPelea2(control.P12,control.P2);
+            }
+            System.out.println(juego);
+            if (juego == 1) {
+                control.ganePJ1++;
+                fondo.juego.Anuncador.setText("Ronda " + (pelea+1) + " Ganador " + fondo.preJuego.jListPreviewPJ1.getSelectedValue());
+            } else {
+                control.ganePJ2++;
+                fondo.juego.Anuncador.setText("Ronda " + (pelea+1) + " Ganador " + fondo.preJuego.jListPreviewPJ2.getSelectedValue());
+            }
+            pelea++;
+        } else {
+            if (control.ganePJ1 > control.ganePJ2) {
+                JOptionPane.showMessageDialog(fondo,"Gano "+ fondo.preJuego.jListPreviewPJ1.getSelectedValue() +".");
+                control.ganePJ1 = 0;
+                control.ganePJ2 = 0;
+                fondo.juego.Anuncador.setText("Juego terminado");
+            } else if (control.ganePJ1 < control.ganePJ2) {
+                JOptionPane.showMessageDialog(fondo,"Gano "+ fondo.preJuego.jListPreviewPJ2.getSelectedValue() +".");
+                control.ganePJ1 = 0;
+                control.ganePJ2 = 0; 
+                fondo.juego.Anuncador.setText("Juego terminado");
+            } 
+        }
+    }
+    
+    private void prepararEditacion() {
+        if ((fondo.editarCiudad.jListCiudades.getSelectedValue() != null) && !(fondo.editarCiudad.jTextFieldCriminalidad.equals("")) && isFloat(fondo.editarCiudad.jTextFieldCriminalidad.getText())){
+            control.editarCiudad2(fondo.editarCiudad.jListCiudades.getSelectedValue(), fondo.editarCiudad.jTextFieldCriminalidad.getText());
+            if (fondo.editarCiudad.jTextFieldNuevoNombre.getText().equals("")) {
+                 control.editarCiudad(fondo.editarCiudad.jListCiudades.getSelectedValue(),fondo.editarCiudad.jTextFieldNuevoNombre.getText());
+                 this.cambiarNombreCiudad(fondo.editarCiudad.jTextFieldNuevoNombre.getText(), getClass().getResource("/image/"+fondo.editarCiudad.jListCiudades.getSelectedValue()+".jpg").getPath(), ".jpg");
+            }
+            JOptionPane.showMessageDialog(fondo,"Se edito correctamente.");
+        } else {
+            JOptionPane.showMessageDialog(fondo,"Asegurese de completar correctamente los campos.");
+        }
+    }
+    
+      private void cambiarNombreCiudad(String nombre, String ruta,String extencion) {
+        String nArchivovViejo = cortarPaht(nombre);
+        nArchivovViejo = getClass().getResource("/image/"+ nArchivovViejo).getPath();
+        String nNuevoArchvo = getClass().getResource("/image/").getPath()+nombre+extencion;//+fondo.agregarCiudad.jTextFieldNombreCiudad.getText()+".jpg").getPath();
+        imagenes.cambiarNombre(nArchivovViejo, nNuevoArchvo);
     }
     
     /**
@@ -552,19 +644,20 @@ public class VistaControl implements ActionListener{
                     fondo.juego.setVisible(true);
                     fondo.preJuego.setVisible(false);
                     ponerImagenJuego();
+                    prepararPelea();
                 }
                 break;
             case "AtrasJuego":
                 sonidoBotones();
+                this.pelea = 0;
+                this.max = 0;
+                this.tipo = 0;
                 fondo.preJuego.setVisible(true);
                 fondo.juego.setVisible(false);
                 break;
             case "Duelo":
                 sonidoBotones();
-                animaciones1.actualizarActual(fondo.juego.jLabelPJ1,"blop");
-                animaciones1.correr1();
-                animaciones2.actualizarActual(fondo.juego.jLabelPJ2,"capitan");
-                animaciones2.correr2();
+                pelea();
                 break;
             case "PreviewCiudadAntiHeore":
                 sonidoBotones();
@@ -616,6 +709,14 @@ public class VistaControl implements ActionListener{
             case "GuardarHeroe":
                 sonidoBotones();
                 agregarHeroe();
+                break;
+            case "PreviewCiudadEditar":
+                sonidoBotones();
+                ponerImagePreview(620,300,".jpg",fondo.editarCiudad.jLabelPreviewCiudad,fondo.editarCiudad.jListCiudades.getSelectedValue());
+                break;
+            case "GuardarEditarCiudad":
+                sonidoBotones();
+                prepararEditacion();
                 break;
         }
     }

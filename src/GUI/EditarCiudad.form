@@ -127,6 +127,7 @@
           <Color blue="0" green="0" red="cc" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Preview"/>
+        <Property name="actionCommand" type="java.lang.String" value="PreviewCiudadEditar"/>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -234,6 +235,7 @@
           <Color blue="0" green="0" red="cc" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Guardar"/>
+        <Property name="actionCommand" type="java.lang.String" value="GuardarEditarCiudad"/>
         <Property name="focusPainted" type="boolean" value="false"/>
       </Properties>
       <AuxValues>

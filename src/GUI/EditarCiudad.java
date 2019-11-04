@@ -75,6 +75,7 @@ public class EditarCiudad extends javax.swing.JPanel {
         jButtonPreviewCiuedad.setBackground(new java.awt.Color(0, 0, 0));
         jButtonPreviewCiuedad.setForeground(new java.awt.Color(204, 0, 0));
         jButtonPreviewCiuedad.setText("Preview");
+        jButtonPreviewCiuedad.setActionCommand("PreviewCiudadEditar");
         add(jButtonPreviewCiuedad, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 213, 460, 30));
 
         jLabel2.setBackground(new java.awt.Color(0, 0, 0));
@@ -105,6 +106,7 @@ public class EditarCiudad extends javax.swing.JPanel {
         jButtonGuardar.setFont(new java.awt.Font("Arial Black", 3, 24)); // NOI18N
         jButtonGuardar.setForeground(new java.awt.Color(204, 0, 0));
         jButtonGuardar.setText("Guardar");
+        jButtonGuardar.setActionCommand("GuardarEditarCiudad");
         jButtonGuardar.setFocusPainted(false);
         add(jButtonGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 570, 370, -1));
 

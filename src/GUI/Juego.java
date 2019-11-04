@@ -25,6 +25,7 @@ public class Juego extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        Anuncador = new javax.swing.JLabel();
         jButtonSalir = new javax.swing.JButton();
         jButtonAtrasJuego = new javax.swing.JButton();
         jLabelPJ1 = new javax.swing.JLabel();
@@ -34,6 +35,14 @@ public class Juego extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Anuncador.setBackground(new java.awt.Color(0, 0, 0));
+        Anuncador.setFont(new java.awt.Font("Arial Black", 3, 12)); // NOI18N
+        Anuncador.setForeground(new java.awt.Color(0, 0, 204));
+        Anuncador.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Anuncador.setText(".......");
+        Anuncador.setOpaque(true);
+        add(Anuncador, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 90, 880, 50));
 
         jButtonSalir.setBackground(new java.awt.Color(0, 0, 0));
         jButtonSalir.setFont(new java.awt.Font("Arial Black", 3, 11)); // NOI18N
@@ -52,6 +61,8 @@ public class Juego extends javax.swing.JPanel {
         add(jLabelPJ1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 360, 210, 230));
         add(jLabelPJ2, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 360, 210, 230));
 
+        jLabelCiudad.setBackground(new java.awt.Color(0, 0, 0));
+        jLabelCiudad.setForeground(new java.awt.Color(0, 0, 204));
         jLabelCiudad.setOpaque(true);
         add(jLabelCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, 1200, 610));
 
@@ -68,6 +79,7 @@ public class Juego extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JLabel Anuncador;
     public javax.swing.JButton jButtonAtrasJuego;
     public javax.swing.JButton jButtonDuelo;
     public javax.swing.JButton jButtonSalir;
