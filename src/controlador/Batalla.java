@@ -58,10 +58,8 @@ public class Batalla {
             nPersonaje1 instanceof AntiHeroe && nPersonaje2 instanceof Heroe  ||
             nPersonaje1 instanceof Villano && nPersonaje2 instanceof Villano || nPersonaje1 == null && nPersonaje2 == null
             ){
-            System.out.println("Error esta combinacion es invalida ");
             return 696;
         }else {
-            System.out.println("Estamos bien ");
             return BatallaEspiritual(nPersonaje1, nPersonaje2);
         }
         
@@ -73,27 +71,22 @@ public class Batalla {
      * @return retorna el resultado de los combates entre el heroe o antiheroe contra el villano
      */
     public int BatallaEspiritual(Personaje nPersonaje1, Personaje nPersonaje2){
-        System.out.println(nPersonaje1.getNombre());
         if(nPersonaje1 instanceof Heroe){
-            System.out.println("Heroe");
             Heroe nHeroe = (Heroe) nPersonaje1;
             Villano nVillano = (Villano) nPersonaje2;
             return heroeVsVillano(nHeroe, nVillano);     
         }
         else if (nPersonaje1 instanceof AntiHeroe){
-            System.out.println("AntiHeroe");
             Villano nVillano = (Villano) nPersonaje2;
             AntiHeroe nAntiHeroe = (AntiHeroe) nPersonaje1;
             return  antiHeroeVsVillano(nAntiHeroe, nVillano);
             
         }else if (nPersonaje1 instanceof Villano && nPersonaje2 instanceof Heroe){
-            System.out.println("VillanoHeroe");
             Heroe nHeroe = (Heroe) nPersonaje1;
             Villano nVillano = (Villano) nPersonaje2;
             return convertirGaneVillano(heroeVsVillano(nHeroe, nVillano));
            
         }else if (nPersonaje1 instanceof Villano && nPersonaje2 instanceof AntiHeroe){
-            System.out.println("AntiHeroeVillano");
             AntiHeroe nAntiHeroe = (AntiHeroe) nPersonaje1;
             Villano nVillano = (Villano) nPersonaje2;
             return convertirGaneVillano(antiHeroeVsVillano(nAntiHeroe, nVillano));

@@ -103,6 +103,7 @@ public class VistaControl implements ActionListener{
         this.fondo.agregarHeroe.jButtonGuardar.addActionListener(this);
         this.fondo.editarCiudad.jButtonPreviewCiuedad.addActionListener(this);
         this.fondo.editarCiudad.jButtonGuardar.addActionListener(this);
+        this.fondo.cargarCiudad.jButtonCargarElementos.addActionListener(this);
     }
     
     /**
@@ -165,7 +166,6 @@ public class VistaControl implements ActionListener{
     private void moverImagen(JTextField nombre, JTextField ruta){
         try {
             if (!nombre.getText().equals("")){
-                System.out.println(ruta.getText());
                 imagenes.moverArchivo(ruta.getText());
             } else {
                 JOptionPane.showMessageDialog(fondo,"Escriba el nombre de la imagen.","Complete los campos",JOptionPane.WARNING_MESSAGE);
@@ -198,7 +198,6 @@ public class VistaControl implements ActionListener{
     private void ponerImagePreview(int x, int y, String fichero, JLabel actual,String imagen){
         if (!(imagen == null)){
             imagen = imagen.split(fichero)[0];
-            System.out.println(imagen + fichero);
             actual.setIcon(imagenes.modificarTamanioImagen(imagen, x, y, fichero));
         } else {
             JOptionPane.showMessageDialog(fondo,"Debe escoger una opcion.","Escoca",JOptionPane.WARNING_MESSAGE);
@@ -472,7 +471,6 @@ public class VistaControl implements ActionListener{
             } else {
                 juego = control.retornarPelea2(control.P12,control.P2);
             }
-            System.out.println(juego);
             if (juego == 1) {
                 control.ganePJ1++;
                 fondo.juego.Anuncador.setText("Ronda " + (pelea+1) + " Ganador " + fondo.preJuego.jListPreviewPJ1.getSelectedValue());
@@ -717,6 +715,11 @@ public class VistaControl implements ActionListener{
             case "GuardarEditarCiudad":
                 sonidoBotones();
                 prepararEditacion();
+                break;
+            case "Cargar Contenido":
+                sonidoBotones();
+                control.listaCiudades();
+                JOptionPane.showMessageDialog(fondo,"Se cargo todas las ciudades.");
                 break;
         }
     }

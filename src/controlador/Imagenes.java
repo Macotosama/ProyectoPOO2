@@ -28,9 +28,6 @@ public class Imagenes {
         Path nPath = Paths.get(nDireccion);
 
         Files.move(origen,nPath.resolve(origen.getFileName()));
-        
-        System.out.println("Archivo movido con exito");
-
     }
     
     /**
