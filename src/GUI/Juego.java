@@ -25,6 +25,14 @@ public class Juego extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jRadioButtonEscaparIz = new javax.swing.JRadioButton();
+        jRadioButtonFallecerIz = new javax.swing.JRadioButton();
+        jRadioButtonCooperarIz = new javax.swing.JRadioButton();
+        jRadioButtonEscaparDe = new javax.swing.JRadioButton();
+        jRadioButtonFallecerDe = new javax.swing.JRadioButton();
+        jRadioButtonCooperarDe = new javax.swing.JRadioButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         Anuncador = new javax.swing.JLabel();
         jButtonSalir = new javax.swing.JButton();
         jButtonAtrasJuego = new javax.swing.JButton();
@@ -35,6 +43,62 @@ public class Juego extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jRadioButtonEscaparIz.setBackground(new java.awt.Color(0, 0, 0));
+        jRadioButtonEscaparIz.setFont(new java.awt.Font("Arial Black", 3, 18)); // NOI18N
+        jRadioButtonEscaparIz.setForeground(new java.awt.Color(204, 0, 0));
+        jRadioButtonEscaparIz.setText("Escapar");
+        jRadioButtonEscaparIz.setActionCommand("EscaparIz");
+        add(jRadioButtonEscaparIz, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 300, -1, -1));
+
+        jRadioButtonFallecerIz.setBackground(new java.awt.Color(0, 0, 0));
+        jRadioButtonFallecerIz.setFont(new java.awt.Font("Arial Black", 3, 18)); // NOI18N
+        jRadioButtonFallecerIz.setForeground(new java.awt.Color(204, 0, 0));
+        jRadioButtonFallecerIz.setText("Fallecer");
+        jRadioButtonFallecerIz.setActionCommand("FallecerIz");
+        add(jRadioButtonFallecerIz, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 350, -1, -1));
+
+        jRadioButtonCooperarIz.setBackground(new java.awt.Color(0, 0, 0));
+        jRadioButtonCooperarIz.setFont(new java.awt.Font("Arial Black", 3, 18)); // NOI18N
+        jRadioButtonCooperarIz.setForeground(new java.awt.Color(204, 0, 0));
+        jRadioButtonCooperarIz.setText("Cooperar");
+        jRadioButtonCooperarIz.setActionCommand("CooperarIz");
+        add(jRadioButtonCooperarIz, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 400, -1, -1));
+
+        jRadioButtonEscaparDe.setBackground(new java.awt.Color(0, 0, 0));
+        jRadioButtonEscaparDe.setFont(new java.awt.Font("Arial Black", 3, 18)); // NOI18N
+        jRadioButtonEscaparDe.setForeground(new java.awt.Color(204, 0, 0));
+        jRadioButtonEscaparDe.setText("Escapar");
+        jRadioButtonEscaparDe.setActionCommand("EscaparDe");
+        add(jRadioButtonEscaparDe, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 310, -1, -1));
+
+        jRadioButtonFallecerDe.setBackground(new java.awt.Color(0, 0, 0));
+        jRadioButtonFallecerDe.setFont(new java.awt.Font("Arial Black", 3, 18)); // NOI18N
+        jRadioButtonFallecerDe.setForeground(new java.awt.Color(204, 0, 0));
+        jRadioButtonFallecerDe.setText("Fallecer");
+        jRadioButtonFallecerDe.setActionCommand("FallecerDe");
+        add(jRadioButtonFallecerDe, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 360, -1, -1));
+
+        jRadioButtonCooperarDe.setBackground(new java.awt.Color(0, 0, 0));
+        jRadioButtonCooperarDe.setFont(new java.awt.Font("Arial Black", 3, 18)); // NOI18N
+        jRadioButtonCooperarDe.setForeground(new java.awt.Color(204, 0, 0));
+        jRadioButtonCooperarDe.setText("Cooperar");
+        jRadioButtonCooperarDe.setActionCommand("CooperarDe");
+        add(jRadioButtonCooperarDe, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 410, -1, -1));
+
+        jLabel3.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel3.setFont(new java.awt.Font("Arial Black", 3, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(204, 0, 0));
+        jLabel3.setText("Persona cercana:");
+        jLabel3.setOpaque(true);
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 280, -1, -1));
+
+        jLabel2.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel2.setFont(new java.awt.Font("Arial Black", 3, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(204, 0, 0));
+        jLabel2.setText("Persona cerca:");
+        jLabel2.setOpaque(true);
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 270, -1, -1));
 
         Anuncador.setBackground(new java.awt.Color(0, 0, 0));
         Anuncador.setFont(new java.awt.Font("Arial Black", 3, 12)); // NOI18N
@@ -84,8 +148,16 @@ public class Juego extends javax.swing.JPanel {
     public javax.swing.JButton jButtonDuelo;
     public javax.swing.JButton jButtonSalir;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     public javax.swing.JLabel jLabelCiudad;
     public javax.swing.JLabel jLabelPJ1;
     public javax.swing.JLabel jLabelPJ2;
+    public javax.swing.JRadioButton jRadioButtonCooperarDe;
+    public javax.swing.JRadioButton jRadioButtonCooperarIz;
+    public javax.swing.JRadioButton jRadioButtonEscaparDe;
+    public javax.swing.JRadioButton jRadioButtonEscaparIz;
+    public javax.swing.JRadioButton jRadioButtonFallecerDe;
+    public javax.swing.JRadioButton jRadioButtonFallecerIz;
     // End of variables declaration//GEN-END:variables
 }

@@ -42,7 +42,6 @@ public class Animacion{
                         cont = 3;
                         break;
                     case 3:
-                        System.out.print("Hola todes");
                         actual.setIcon(imagenEdit.modificarTamanioImagen(imagenActual+cont, 210, 230, ".png"));
                         cont = 4;
                         break;
@@ -90,6 +89,90 @@ public class Animacion{
                         break;
                     case 5:
                         actual.setIcon(imagenEdit.voltearImagen(imagenActual+cont, 210, 230, ".png"));
+                        cont = 1;
+                        break;
+                }
+            }
+        };
+        timer  = new Timer();
+        timer.scheduleAtFixedRate(cambio, new Date(), tiempo);
+    }
+    
+    public void correr3() {
+        TimerTask cambio;
+        int tiempo = 200;
+        Timer timer;
+        cont = 2;
+        cambio = new TimerTask() {
+            @Override
+            public void run() {
+                
+                switch (cont) {
+                    case 1:
+                        actual.setIcon(imagenEdit.voltearImagen(imagenActual, 210, 230, ".png"));
+                        cont = 2;
+                        this.cancel();
+                        break;
+                    case 2:
+                        actual.setIcon(imagenEdit.modificarTamanioImagen(imagenActual, 210, 230, ".png"));
+                        cont = 3;
+                        break;
+                    case 3:
+                        actual.setIcon(imagenEdit.voltearImagen(imagenActual, 210, 230, ".png"));
+                        cont = 4;
+                        break;
+                    case 4:
+                        actual.setIcon(imagenEdit.modificarTamanioImagen(imagenActual, 210, 230, ".png"));
+                        cont = 5;
+                        break;
+                    case 5:
+                        actual.setIcon(imagenEdit.voltearImagen(imagenActual, 210, 230, ".png"));
+                        cont = 6;
+                        break;
+                    case 6:
+                        actual.setIcon(imagenEdit.modificarTamanioImagen(imagenActual, 210, 230, ".png"));
+                        cont = 1;
+                        break;
+                }
+            }
+        };
+        timer  = new Timer();
+        timer.scheduleAtFixedRate(cambio, new Date(), tiempo);
+    }
+    
+    public void correr4() {
+        TimerTask cambio;
+        int tiempo = 200;
+        Timer timer;
+        cont = 2;
+        cambio = new TimerTask() {
+            @Override
+            public void run() {
+                
+                switch (cont) {
+                    case 1:
+                        actual.setIcon(imagenEdit.modificarTamanioImagen(imagenActual, 210, 230, ".png"));
+                        cont = 2;
+                        this.cancel();
+                        break;
+                    case 2:
+                        actual.setIcon(imagenEdit.voltearImagen(imagenActual, 210, 230, ".png"));
+                        cont = 3;
+                        break;
+                    case 3:
+                        actual.setIcon(imagenEdit.modificarTamanioImagen(imagenActual, 210, 230, ".png"));
+                        cont = 4;
+                        break;
+                    case 4:
+                        actual.setIcon(imagenEdit.voltearImagen(imagenActual, 210, 230, ".png"));
+                        cont = 5;
+                        break;
+                    case 5:
+                        actual.setIcon(imagenEdit.modificarTamanioImagen(imagenActual, 210, 230, ".png"));
+                        cont = 6;
+                        break;
+                    case 6:
+                        actual.setIcon(imagenEdit.voltearImagen(imagenActual, 210, 230, ".png"));
                         cont = 1;
                         break;
                 }

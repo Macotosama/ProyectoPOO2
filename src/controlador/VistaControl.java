@@ -104,6 +104,12 @@ public class VistaControl implements ActionListener{
         this.fondo.editarCiudad.jButtonPreviewCiuedad.addActionListener(this);
         this.fondo.editarCiudad.jButtonGuardar.addActionListener(this);
         this.fondo.cargarCiudad.jButtonCargarElementos.addActionListener(this);
+        this.fondo.juego.jRadioButtonCooperarDe.addActionListener(this);
+        this.fondo.juego.jRadioButtonCooperarIz.addActionListener(this);
+        this.fondo.juego.jRadioButtonEscaparDe.addActionListener(this);
+        this.fondo.juego.jRadioButtonEscaparIz.addActionListener(this);
+        this.fondo.juego.jRadioButtonFallecerDe.addActionListener(this);
+        this.fondo.juego.jRadioButtonFallecerIz.addActionListener(this);
     }
     
     /**
@@ -209,8 +215,8 @@ public class VistaControl implements ActionListener{
      */
     private void ponerImagenJuego() {
         fondo.juego.jLabelCiudad.setIcon(imagenes.modificarTamanioImagen(fondo.preJuego.Ciudades.getSelectedValue(), 1200, 610, ".jpg"));
-        fondo.juego.jLabelPJ1.setIcon(imagenes.modificarTamanioImagen("blop1", 210, 230, ".png"));
-        fondo.juego.jLabelPJ2.setIcon(imagenes.voltearImagen("capitan1", 210, 230, ".png"));
+        fondo.juego.jLabelPJ1.setIcon(imagenes.modificarTamanioImagen(fondo.preJuego.jListPreviewPJ1.getSelectedValue(), 210, 230, ".png"));
+        fondo.juego.jLabelPJ2.setIcon(imagenes.voltearImagen(fondo.preJuego.jListPreviewPJ2.getSelectedValue(), 210, 230, ".png"));
     }
     
     private void prepararAgregarAntiheroe() {
@@ -461,10 +467,22 @@ public class VistaControl implements ActionListener{
     
     private void pelea () {
         if (pelea < max) {
-            animaciones1.actualizarActual(fondo.juego.jLabelPJ1,"blop");
-            animaciones1.correr1();
-            animaciones2.actualizarActual(fondo.juego.jLabelPJ2,"capitan");
-            animaciones2.correr2();           
+            if (fondo.preJuego.jListPreviewPJ1.getSelectedValue().equals("blop")){
+                animaciones1.actualizarActual(fondo.juego.jLabelPJ1,"blop");
+                animaciones1.correr1();
+            } else {
+                animaciones1.actualizarActual(fondo.juego.jLabelPJ1,fondo.preJuego.jListPreviewPJ1.getSelectedValue());
+                animaciones1.correr3();
+            }
+            
+            if (fondo.preJuego.jListPreviewPJ1.getSelectedValue().equals("capitan")){
+                animaciones2.actualizarActual(fondo.juego.jLabelPJ2,"capitan");
+                animaciones2.correr2();   
+            } else {
+                animaciones2.actualizarActual(fondo.juego.jLabelPJ2,fondo.preJuego.jListPreviewPJ2.getSelectedValue());
+                animaciones2.correr4(); 
+            }
+          
             int juego; 
             if (control.esHeroe(fondo.preJuego.Ciudades.getSelectedValue(), fondo.preJuego.jListPreviewPJ1.getSelectedValue())){
                juego = control.retornarPelea2(control.P11,control.P2);
@@ -720,6 +738,36 @@ public class VistaControl implements ActionListener{
                 sonidoBotones();
                 control.listaCiudades();
                 JOptionPane.showMessageDialog(fondo,"Se cargo todas las ciudades.");
+                break;
+            case "EscaparIz":
+                sonidoBotones();
+                fondo.juego.jRadioButtonCooperarIz.setSelected(false);
+                fondo.juego.jRadioButtonFallecerIz.setSelected(false);
+                break;
+            case "FallecerIz":
+                sonidoBotones();
+                fondo.juego.jRadioButtonCooperarIz.setSelected(false);
+                fondo.juego.jRadioButtonEscaparIz.setSelected(false);
+                break;
+            case "CooperarIz":
+                sonidoBotones();
+                fondo.juego.jRadioButtonEscaparIz.setSelected(false);
+                fondo.juego.jRadioButtonFallecerIz.setSelected(false);
+                break;
+            case "EscaparDe":
+                sonidoBotones();
+                fondo.juego.jRadioButtonCooperarDe.setSelected(false);
+                fondo.juego.jRadioButtonFallecerDe.setSelected(false);
+                break;
+            case "FallecerDe":
+                sonidoBotones();
+                fondo.juego.jRadioButtonCooperarDe.setSelected(false);
+                fondo.juego.jRadioButtonEscaparDe.setSelected(false);
+                break;
+            case "CooperarDe":
+                sonidoBotones();
+                fondo.juego.jRadioButtonEscaparDe.setSelected(false);
+                fondo.juego.jRadioButtonFallecerDe.setSelected(false);
                 break;
         }
     }
