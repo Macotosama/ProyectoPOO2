@@ -51,12 +51,14 @@ public class AgregarVillano extends javax.swing.JPanel {
         jTextFieldPersonaCercana = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         jListArchienemigo = new javax.swing.JList<>();
-        jLabel10 = new javax.swing.JLabel();
+        jLabelEnemigo = new javax.swing.JLabel();
         jButtonArchienemigo = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         jTextFieldDireccion = new javax.swing.JTextField();
         jButtonBuscar = new javax.swing.JButton();
         jButtonGuardar = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
+        jTextFieldNombreVillano = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -153,6 +155,7 @@ public class AgregarVillano extends javax.swing.JPanel {
         jButtonCiudad.setFont(new java.awt.Font("Arial Black", 3, 18)); // NOI18N
         jButtonCiudad.setForeground(new java.awt.Color(204, 0, 0));
         jButtonCiudad.setText("Ciudad");
+        jButtonCiudad.setActionCommand("CiudadVillano");
         add(jButtonCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 630, 290, -1));
 
         jTextFieldNombre.setBackground(new java.awt.Color(0, 0, 0));
@@ -212,13 +215,14 @@ public class AgregarVillano extends javax.swing.JPanel {
 
         add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 40, 110, 140));
 
-        jLabel10.setOpaque(true);
-        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 40, 160, 140));
+        jLabelEnemigo.setOpaque(true);
+        add(jLabelEnemigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 40, 160, 140));
 
         jButtonArchienemigo.setBackground(new java.awt.Color(0, 0, 0));
         jButtonArchienemigo.setFont(new java.awt.Font("Arial Black", 3, 18)); // NOI18N
         jButtonArchienemigo.setForeground(new java.awt.Color(204, 0, 0));
         jButtonArchienemigo.setText("Archienemigo");
+        jButtonArchienemigo.setActionCommand("ArchienemigoVillano");
         add(jButtonArchienemigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 190, 280, -1));
 
         jLabel11.setBackground(new java.awt.Color(0, 0, 0));
@@ -237,13 +241,27 @@ public class AgregarVillano extends javax.swing.JPanel {
         jButtonBuscar.setFont(new java.awt.Font("Arial Black", 3, 18)); // NOI18N
         jButtonBuscar.setForeground(new java.awt.Color(204, 0, 0));
         jButtonBuscar.setText("Buscar");
+        jButtonBuscar.setActionCommand("BuscarVillano");
         add(jButtonBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 380, 220, -1));
 
         jButtonGuardar.setBackground(new java.awt.Color(0, 0, 0));
         jButtonGuardar.setFont(new java.awt.Font("Arial Black", 3, 36)); // NOI18N
         jButtonGuardar.setForeground(new java.awt.Color(204, 0, 0));
         jButtonGuardar.setText("Guardar");
-        add(jButtonGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 530, 400, -1));
+        jButtonGuardar.setActionCommand("GuardarVillano");
+        add(jButtonGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 590, 400, -1));
+
+        jLabel12.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel12.setFont(new java.awt.Font("Arial Black", 3, 18)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(0, 0, 204));
+        jLabel12.setText("Nombre villano:");
+        jLabel12.setOpaque(true);
+        add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 430, 180, -1));
+
+        jTextFieldNombreVillano.setBackground(new java.awt.Color(0, 0, 0));
+        jTextFieldNombreVillano.setFont(new java.awt.Font("Arial Black", 3, 18)); // NOI18N
+        jTextFieldNombreVillano.setForeground(new java.awt.Color(204, 0, 0));
+        add(jTextFieldNombreVillano, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 470, 390, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/AgregarVillano.jpg"))); // NOI18N
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -262,8 +280,8 @@ public class AgregarVillano extends javax.swing.JPanel {
     public javax.swing.JButton jButtonGuardar;
     public javax.swing.JButton jButtonSalir;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -273,6 +291,7 @@ public class AgregarVillano extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     public javax.swing.JLabel jLabelCiudades;
+    public javax.swing.JLabel jLabelEnemigo;
     public javax.swing.JList<String> jListArchienemigo;
     public javax.swing.JList<String> jListCiudades;
     private javax.swing.JScrollPane jScrollPane1;
@@ -281,6 +300,7 @@ public class AgregarVillano extends javax.swing.JPanel {
     public javax.swing.JTextField jTextFieldDireccion;
     public javax.swing.JTextField jTextFieldEdad;
     public javax.swing.JTextField jTextFieldNombre;
+    public javax.swing.JTextField jTextFieldNombreVillano;
     public javax.swing.JTextField jTextFieldOcupacion;
     public javax.swing.JTextField jTextFieldOrientacionSexual;
     public javax.swing.JTextField jTextFieldOrigen;

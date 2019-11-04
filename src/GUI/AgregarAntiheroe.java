@@ -40,7 +40,7 @@ public class AgregarAntiheroe extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jListCiudades = new javax.swing.JList<>();
         jButtonCiudades = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
+        jLabelCiudades = new javax.swing.JLabel();
         jTextFieldNombre = new javax.swing.JTextField();
         jTextFieldEdad = new javax.swing.JTextField();
         jTextField1Sexo = new javax.swing.JTextField();
@@ -52,11 +52,11 @@ public class AgregarAntiheroe extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         jListArchienemigo = new javax.swing.JList<>();
         jLabelEnemigo = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        jButtonPonerArchienemigo = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         jTextFieldDireccion = new javax.swing.JTextField();
         jButtonBusacarDireccion = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        jButtonGuardar = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
         jTextFieldNombreAntriheroe = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
@@ -149,10 +149,11 @@ public class AgregarAntiheroe extends javax.swing.JPanel {
         jButtonCiudades.setFont(new java.awt.Font("Arial Black", 3, 18)); // NOI18N
         jButtonCiudades.setForeground(new java.awt.Color(204, 0, 0));
         jButtonCiudades.setText("Ciudad");
+        jButtonCiudades.setActionCommand("PreviewCiudadAntiHeore");
         add(jButtonCiudades, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 630, 290, -1));
 
-        jLabel7.setOpaque(true);
-        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 450, 340, 170));
+        jLabelCiudades.setOpaque(true);
+        add(jLabelCiudades, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 450, 340, 170));
 
         jTextFieldNombre.setBackground(new java.awt.Color(0, 0, 0));
         jTextFieldNombre.setFont(new java.awt.Font("Arial Black", 3, 18)); // NOI18N
@@ -210,11 +211,12 @@ public class AgregarAntiheroe extends javax.swing.JPanel {
         jLabelEnemigo.setOpaque(true);
         add(jLabelEnemigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 50, 180, 150));
 
-        jButton2.setBackground(new java.awt.Color(0, 0, 0));
-        jButton2.setFont(new java.awt.Font("Arial Black", 3, 18)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(204, 0, 0));
-        jButton2.setText("Archienemigo");
-        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 210, 310, -1));
+        jButtonPonerArchienemigo.setBackground(new java.awt.Color(0, 0, 0));
+        jButtonPonerArchienemigo.setFont(new java.awt.Font("Arial Black", 3, 18)); // NOI18N
+        jButtonPonerArchienemigo.setForeground(new java.awt.Color(204, 0, 0));
+        jButtonPonerArchienemigo.setText("Archienemigo");
+        jButtonPonerArchienemigo.setActionCommand("ArchienemigoAntiheroe");
+        add(jButtonPonerArchienemigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 210, 310, -1));
 
         jLabel11.setBackground(new java.awt.Color(0, 0, 0));
         jLabel11.setFont(new java.awt.Font("Arial Black", 3, 18)); // NOI18N
@@ -232,13 +234,15 @@ public class AgregarAntiheroe extends javax.swing.JPanel {
         jButtonBusacarDireccion.setFont(new java.awt.Font("Arial Black", 3, 18)); // NOI18N
         jButtonBusacarDireccion.setForeground(new java.awt.Color(204, 0, 0));
         jButtonBusacarDireccion.setText("Buscar");
+        jButtonBusacarDireccion.setActionCommand("BuscarAntiherore");
         add(jButtonBusacarDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 400, 190, -1));
 
-        jButton1.setBackground(new java.awt.Color(0, 0, 0));
-        jButton1.setFont(new java.awt.Font("Arial Black", 3, 36)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(204, 0, 0));
-        jButton1.setText("Guardar");
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 590, 420, -1));
+        jButtonGuardar.setBackground(new java.awt.Color(0, 0, 0));
+        jButtonGuardar.setFont(new java.awt.Font("Arial Black", 3, 36)); // NOI18N
+        jButtonGuardar.setForeground(new java.awt.Color(204, 0, 0));
+        jButtonGuardar.setText("Guardar");
+        jButtonGuardar.setActionCommand("GuardarAntiheroe");
+        add(jButtonGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 590, 420, -1));
 
         jLabel12.setBackground(new java.awt.Color(0, 0, 0));
         jLabel12.setFont(new java.awt.Font("Arial Black", 3, 18)); // NOI18N
@@ -259,11 +263,11 @@ public class AgregarAntiheroe extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    public javax.swing.JButton jButton2;
     public javax.swing.JButton jButtonAtrasCargarAntiheroe;
     public javax.swing.JButton jButtonBusacarDireccion;
     public javax.swing.JButton jButtonCiudades;
+    public javax.swing.JButton jButtonGuardar;
+    public javax.swing.JButton jButtonPonerArchienemigo;
     public javax.swing.JButton jButtonSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -274,9 +278,9 @@ public class AgregarAntiheroe extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    public javax.swing.JLabel jLabelCiudades;
     public javax.swing.JLabel jLabelEnemigo;
     public javax.swing.JList<String> jListArchienemigo;
     public javax.swing.JList<String> jListCiudades;

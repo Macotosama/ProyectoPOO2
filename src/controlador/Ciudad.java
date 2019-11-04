@@ -28,6 +28,30 @@ public class Ciudad {
     }
     
     /**
+     * Funcion la cual setea el nuevo arreglo de antiheroes
+     * @param nArregloAntiHeroe Varible la cual representa el nuevo arreglo de antiheroes
+     */
+    public void setAntiheroes( ArrayList<AntiHeroe> nArregloAntiHeroe){
+        aAntiHeroes = nArregloAntiHeroe;
+    }
+    
+        /**
+     * Funcion la cual setea el nuevo arreglo de Heroes
+     * @param nArregloHeroe Varible la cual representa el nuevo arreglo de heroes
+     */
+    public void setHeroes( ArrayList<Heroe> nArregloHeroe){
+        aHeroes = nArregloHeroe;
+    }
+    
+            /**
+     * Funcion la cual setea el nuevo arreglo de villanos
+     * @param nArregloVillanos Varible la cual representa el nuevo arreglo de villanos
+     */
+    public void setVillanos( ArrayList<Villano> nArregloVillanos){
+        aVillanos = nArregloVillanos;
+    }
+    
+    /**
     * Método para setear el nombre de la ciudad
     * @param nNombre que representa el nombre de la ciudad
     */
@@ -65,5 +89,25 @@ public class Ciudad {
     */   
     public void addAntiHeroe(AntiHeroe nAntiHeroe){
         aAntiHeroes.add(nAntiHeroe);
+    }
+    
+    /**
+     * Devuelve el nombre de la ciudad
+     * @return El nombre de la ciudad
+     */
+    public String getNombre () {
+        return aNombre;
+    }
+    
+    public ArrayList getHeroes () {
+        return aHeroes;
+    }
+    
+    public ArrayList getVillanos () {
+        return aVillanos;
+    }
+    
+    public ArrayList getAntiHeroes () {
+        return aAntiHeroes;
     }
 }

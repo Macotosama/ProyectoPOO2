@@ -15,11 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon; 
-public class Imagenes {    
-    //Constante para un ancho máximo de imagen
-    private final int maxAncho = 900;
-    //Constante para un alto máximo de imagen
-    private final int maxLargo = 900;
+public class Imagenes {
     /**
      * Metodo el cual Mueve un archivo de un fichero a uno ubicado en una carpeta del programa
      * @param nString Ruta de la imagen que se desea mover.
@@ -30,11 +26,9 @@ public class Imagenes {
         Path origen = Paths.get(nString);
         
         String direccion = getClass().getResource("/image").getPath();
-        
         String nDireccion = (String) direccion.subSequence(1, direccion.length());
-        
         Path nPath = Paths.get(nDireccion);
-            
+
         Files.move(origen,nPath.resolve(origen.getFileName()));
         
         System.out.println("Archivo movido con exito");
@@ -86,6 +80,7 @@ public class Imagenes {
      * @return correcto es una variable de tipo bolean la cual representa si se cambia o no el nombre del archivo.
      */
     public boolean cambiarNombre(String nArchivovViejo, String nNuevoArchvo){
+        
         File f1 = new File(nArchivovViejo);
         
         File f2 = new File(nNuevoArchvo);

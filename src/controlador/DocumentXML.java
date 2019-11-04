@@ -65,6 +65,109 @@ public class DocumentXML {
             Logger.getLogger(DocumentXML.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public void registrarPersona(String pNombre, String pNombreCiudad) {
+        try {
+            File fXmlFile = new File("Data.xml");
+            DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+            doc=docBuilder.parse(fXmlFile);
+            NodeList rootCiudad=doc.getElementsByTagName("Ciudad");
+            Element ciudad=doc.createElement("Actual");
+            for (int i=0;i!=rootCiudad.getLength();i++) {
+                Element temp =(Element) rootCiudad.item(i);
+                NodeList nombre = temp.getElementsByTagName("Nombre");       
+                
+                if (nombre.item(0).getTextContent().equals(pNombreCiudad)) ciudad=temp;
+                
+            } 
+            NodeList nList = ciudad.getElementsByTagName("PersonasCercanas");
+            Element personajeRaiz=doc.createElement("PersonasCercanas");
+            int cont=0;
+            while(cont!=nList.getLength()) {
+                Node nNode = nList.item(cont);
+                if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+                    if (nNode.getNodeName().equals("PersonasCercanas")) {
+                        personajeRaiz=(Element) nNode;
+                        cont=nList.getLength();
+                    }
+                    else cont++;
+                }
+            }
+            Element personaje=doc.createElement("PersonaCercana");
+            Element nombre = doc.createElement("Nombre");
+            nombre.appendChild(doc.createTextNode(pNombre));
+            Element estado=doc.createElement("Estado");
+            estado.appendChild(doc.createTextNode(""));
+           
+
+            personaje.appendChild(nombre);
+            personaje.appendChild(estado);
+           
+ 
+            personajeRaiz.appendChild(personaje);
+        
+        if (nList.getLength()==0) ciudad.appendChild(personajeRaiz);
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer();
+            DOMSource source = new DOMSource(doc);
+            StreamResult result = new StreamResult("Data.xml");
+            transformer.transform(source, result);
+            
+        } catch (ParserConfigurationException ex) {
+            Logger.getLogger(DocumentXML.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SAXException ex) {
+            Logger.getLogger(DocumentXML.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(DocumentXML.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (TransformerException ex) {
+            Logger.getLogger(DocumentXML.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+    }
+    
+    public void editarEstado(String pNombrePersona,String pNombreCiudad,String pEstado) {
+        try {
+            File fXmlFile = new File("Data.xml");
+            DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+            doc=docBuilder.parse(fXmlFile);
+            NodeList rootCiudad=doc.getElementsByTagName("Ciudad");
+            Element ciudad=doc.createElement("Actual");
+           for (int i=0;i!=rootCiudad.getLength();i++) {
+                Element temp =(Element) rootCiudad.item(i);
+                NodeList nombre = temp.getElementsByTagName("Nombre");
+                
+                if (nombre.item(0).getTextContent().equals(pNombreCiudad)) {
+                    ciudad=temp;
+                }  
+            }
+           NodeList personas=ciudad.getElementsByTagName("PersonaCercana");
+           System.out.println(personas.item(0).getTextContent());
+           for (int i=0;i!=personas.getLength();i++) {
+               Element temp2=(Element) personas.item(i);
+               NodeList nombre = temp2.getElementsByTagName("Nombre");
+               System.out.println(nombre.item(0).getTextContent()); //.item(0).getTextContent());
+               //if (temp2.getElementsByTagName("Nombre").item(0).getTextContent().equals(pNombrePersona)) temp2.getElementsByTagName("Estado").item(0).setTextContent(pEstado);
+              // break;
+                  
+           }
+           TransformerFactory transformerFactory = TransformerFactory.newInstance();
+           Transformer transformer = transformerFactory.newTransformer();
+           StreamResult result = new StreamResult("Data.xml");
+           DOMSource source = new DOMSource(doc);
+           transformer.transform(source, result);
+        }catch (ParserConfigurationException ex) {
+            Logger.getLogger(DocumentXML.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SAXException ex) {
+            Logger.getLogger(DocumentXML.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(DocumentXML.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (TransformerException ex) {
+            Logger.getLogger(DocumentXML.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     public void registrarHeroe(String pNombre, int pEdad, String pSexo, float pAltura, String pCiudadOrigen, String pNombreCiudad,
             String pOcupacion, String pOrientacionSexual,Personaje pPersonaCercana, String pImg, int pID, String pNombreHeroe, String pArchiEnemigo) {
         try {
@@ -85,7 +188,7 @@ public class DocumentXML {
                 }
                 
             } 
-            registrarPersonaje(pNombre, pEdad, pSexo, pAltura, pCiudadOrigen,pOcupacion,pOrientacionSexual,pPersonaCercana,pImg,pID,0,0,ciudad,doc);
+            //registrarPersonaje(pNombre, pEdad, pSexo, pAltura, pCiudadOrigen,pOcupacion,pOrientacionSexual,pPersonaCercana,pImg,pID,0,0,ciudad,doc,false);
             NodeList nList = ciudad.getElementsByTagName("Heroes");
             Element personajeRaiz=doc.createElement("Heroes");
             int cont=0;
@@ -100,10 +203,11 @@ public class DocumentXML {
                 }
             }
             Element heroe=doc.createElement("Heroe");
-            Element nombre=doc.createElement("Nombre");
+            Element nombre=doc.createElement("NombreHeroe");
             nombre.appendChild(doc.createTextNode(pNombreHeroe));
             Element archiEnemigo=doc.createElement("ArchiEnemigo");
             archiEnemigo.appendChild(doc.createTextNode(pArchiEnemigo));
+            registrarPersonaje(pNombre, pEdad, pSexo, pAltura, pCiudadOrigen,pOcupacion,pOrientacionSexual,pPersonaCercana,pImg,pID,0,0,heroe,doc);
             
             heroe.appendChild(nombre);
             heroe.appendChild(archiEnemigo);
@@ -147,7 +251,7 @@ public class DocumentXML {
                 }
                 
             }
-            registrarPersonaje(pNombre, pEdad, pSexo, pAltura, pCiudadOrigen,pOcupacion,pOrientacionSexual,pPersonaCercana,pImg,pID,0,0,ciudad,doc);
+            //registrarPersonaje(pNombre, pEdad, pSexo, pAltura, pCiudadOrigen,pOcupacion,pOrientacionSexual,pPersonaCercana,pImg,pID,0,0,ciudad,doc);
             NodeList nList = ciudad.getElementsByTagName("AntiHeroes");
             Element personajeRaiz=doc.createElement("AntiHeroes");
             int cont=0;
@@ -162,10 +266,11 @@ public class DocumentXML {
                 }
             }
             Element antiheroe=doc.createElement("AntiHeroe");
-            Element nombre=doc.createElement("Nombre");
+            Element nombre=doc.createElement("NombreAntiHeroe");
             nombre.appendChild(doc.createTextNode(pNombreAntiHeroe));
             Element archiEnemigo=doc.createElement("ArchiEnemigo");
             archiEnemigo.appendChild(doc.createTextNode(pArchiEnemigo));
+            registrarPersonaje(pNombre, pEdad, pSexo, pAltura, pCiudadOrigen,pOcupacion,pOrientacionSexual,pPersonaCercana,pImg,pID,0,0,antiheroe,doc);
             antiheroe.appendChild(nombre);
             antiheroe.appendChild(archiEnemigo);
             personajeRaiz.appendChild(antiheroe);
@@ -205,7 +310,6 @@ public class DocumentXML {
                 }
                 
             }
-            registrarPersonaje(pNombre, pEdad, pSexo, pAltura, pCiudadOrigen,pOcupacion,pOrientacionSexual,pPersonaCercana,pImg,pID,0,0,ciudad,doc);
             NodeList nList = ciudad.getElementsByTagName("Villanos");
             Element personajeRaiz=doc.createElement("Villanos");
             int cont=0;
@@ -219,14 +323,15 @@ public class DocumentXML {
                     else cont++;
                 }
             }
-            Element antiheroe=doc.createElement("Villano");
-            Element nombre=doc.createElement("Nombre");
+            Element villano=doc.createElement("Villano");
+            Element nombre=doc.createElement("NombreVillano");
             nombre.appendChild(doc.createTextNode(pNombreVillano));
             Element archiEnemigo=doc.createElement("ArchiEnemigo");
             archiEnemigo.appendChild(doc.createTextNode(pArchiEnemigo));
-            antiheroe.appendChild(nombre);
-            antiheroe.appendChild(archiEnemigo);
-            personajeRaiz.appendChild(antiheroe);
+            registrarPersonaje(pNombre, pEdad, pSexo, pAltura, pCiudadOrigen,pOcupacion,pOrientacionSexual,pPersonaCercana,pImg,pID,0,0,villano,doc);
+            villano.appendChild(nombre);
+            villano.appendChild(archiEnemigo);
+            personajeRaiz.appendChild(villano);
             if (nList.getLength()==0) ciudad.appendChild(personajeRaiz);
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
@@ -247,20 +352,9 @@ public class DocumentXML {
         
     public void registrarPersonaje(String pNombre, int pEdad, String pSexo, float pAltura, String pCiudadOrigen,
             String pOcupacion, String pOrientacionSexual,Personaje pPersonaCercana, String pImg, int pID,int pGanes, int pPerdidos,Element pNombreCiudad, Document doc) {
-        NodeList nList = pNombreCiudad.getElementsByTagName("Personajes");
-        Element personajeRaiz=doc.createElement("Personajes");
-        int cont=0;
-        while(cont!=nList.getLength()) {
-            Node nNode = nList.item(cont);
-            if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-                if (nNode.getNodeName().equals("Personajes")) {
-                    personajeRaiz=(Element) nNode;
-                    cont=nList.getLength();
-                }
-                else cont++;
-            }
-        }
-        Element personaje = doc.createElement("Personaje");
+        Element personaje=pNombreCiudad;
+      
+   
         Element nombre = doc.createElement("Nombre");
         nombre.appendChild(doc.createTextNode(pNombre));
         Element edad = doc.createElement("Edad");
@@ -281,9 +375,9 @@ public class DocumentXML {
         img.appendChild(doc.createTextNode(pImg));
         Element id = doc.createElement("ID");
         id.appendChild(doc.createTextNode(String.valueOf(pID)));
-        Element ganes = doc.createElement("Cantidaddeeventosganados");
+        Element ganes = doc.createElement("CantidadEventosGanados");
         ganes.appendChild(doc.createTextNode(String.valueOf(pGanes)));
-        Element perdidas = doc.createElement("Cantidaddeeventosperdidos");
+        Element perdidas = doc.createElement("CantidadEventosPerdidos");
         perdidas.appendChild(doc.createTextNode(String.valueOf(pPerdidos)));
         
         personaje.appendChild(nombre);
@@ -298,10 +392,10 @@ public class DocumentXML {
         personaje.appendChild(id);
         personaje.appendChild(ganes);
         personaje.appendChild(perdidas);
-        personajeRaiz.appendChild(personaje);
-        if (nList.getLength()==0) pNombreCiudad.appendChild(personajeRaiz);
+        
         
     }
+    
 
     public void registrarCiudad(double pIndiceCriminalidad, String pNombreCiudad, String pImg) {
         try {
@@ -477,6 +571,9 @@ public class DocumentXML {
                 ciudad.setNombre(nombre.item(0).getTextContent());
                 NodeList indice = temp.getElementsByTagName("IndiceCriminalidad");
                 ciudad.setIndiceCriminalidad(Double.parseDouble(indice.item(0).getTextContent()));
+                ciudad.setHeroes(listaHeroes(nombre.item(0).getTextContent()));
+                ciudad.setAntiheroes(listaAntiHeroes(nombre.item(0).getTextContent()));
+                ciudad.setVillanos(listaVillanos(nombre.item(0).getTextContent()));
                 lista.add(ciudad);
             }
             return lista;
@@ -506,13 +603,38 @@ public class DocumentXML {
             }
            NodeList heroes=ciudad.getElementsByTagName("Heroe");
            for (int i=0;i!=heroes.getLength();i++) {
-               Heroe heroe=new Heroe();
+               Heroe personaje=new Heroe();
                 Element temp =(Element) heroes.item(i);
                 NodeList nombre = temp.getElementsByTagName("Nombre");
-                heroe.setNombre(nombre.item(0).getTextContent());
+                personaje.setNombre(nombre.item(0).getTextContent());
+                NodeList edad = temp.getElementsByTagName("Edad");
+                personaje.setEdad(Integer.parseInt(edad.item(0).getTextContent()));
+                NodeList sexo = temp.getElementsByTagName("Sexo");
+                personaje.setSexo(sexo.item(0).getTextContent());
+                NodeList altura = temp.getElementsByTagName("Altura");
+                personaje.setAltura(Float.parseFloat(altura.item(0).getTextContent()));
+                NodeList ciudadOrigen = temp.getElementsByTagName("CiudadOrigen");
+                personaje.setCiudadOrigen(ciudadOrigen.item(0).getTextContent());
+                NodeList orientacion = temp.getElementsByTagName("OrientacionSexual");
+                personaje.setOrientacionSexual(orientacion.item(0).getTextContent());
+                NodeList ocupacion = temp.getElementsByTagName("Ocupacion");
+                personaje.setOCupacion(ocupacion.item(0).getTextContent());
+                NodeList id = temp.getElementsByTagName("ID");
+                personaje.setID(Integer.parseInt(id.item(0).getTextContent()));
+                Personaje persona=new Personaje();
+                NodeList personaCercana=temp.getElementsByTagName("PersonaCercana");
+                persona.setNombre(personaCercana.item(0).getTextContent());
+                personaje.aPersonasercana(persona);
+                
+                NodeList ganados = temp.getElementsByTagName("CantidadEventosGanados");
+                personaje.setCantidadEventosGanados(Integer.parseInt(ganados.item(0).getTextContent()));
+                NodeList perdidos = temp.getElementsByTagName("CantidadEventosPerdidos");
+                personaje.setCantidadEventosPerdidos(Integer.parseInt(perdidos.item(0).getTextContent()));
+                NodeList nombreHeroe = temp.getElementsByTagName("NombreHeroe");
+                personaje.setNombreHeroe(nombreHeroe.item(0).getTextContent());
                 NodeList archiEnemigo = temp.getElementsByTagName("ArchiEnemigo");
-                heroe.setArchiEnemigo(archiEnemigo.item(0).getTextContent());
-                lista.add(heroe);
+                personaje.setArchiEnemigo(archiEnemigo.item(0).getTextContent());
+                lista.add(personaje);
             }
             return lista;
         }catch (ParserConfigurationException ex) {
@@ -544,12 +666,37 @@ public class DocumentXML {
            NodeList antiHeroes=ciudad.getElementsByTagName("AntiHeroe");
            for (int i=0;i!=antiHeroes.getLength();i++) {
                 Element temp =(Element) antiHeroes.item(i);
-                AntiHeroe antiHeroe=new AntiHeroe();
+                AntiHeroe personaje=new AntiHeroe();
                 NodeList nombre = temp.getElementsByTagName("Nombre");
-                antiHeroe.setNombre(nombre.item(0).getTextContent());
+                personaje.setNombre(nombre.item(0).getTextContent());
+                NodeList edad = temp.getElementsByTagName("Edad");
+                personaje.setEdad(Integer.parseInt(edad.item(0).getTextContent()));
+                NodeList sexo = temp.getElementsByTagName("Sexo");
+                personaje.setSexo(sexo.item(0).getTextContent());
+                NodeList altura = temp.getElementsByTagName("Altura");
+                personaje.setAltura(Float.parseFloat(altura.item(0).getTextContent()));
+                NodeList ciudadOrigen = temp.getElementsByTagName("CiudadOrigen");
+                personaje.setCiudadOrigen(ciudadOrigen.item(0).getTextContent());
+                NodeList orientacion = temp.getElementsByTagName("OrientacionSexual");
+                personaje.setOrientacionSexual(orientacion.item(0).getTextContent());
+                NodeList ocupacion = temp.getElementsByTagName("Ocupacion");
+                personaje.setOCupacion(ocupacion.item(0).getTextContent());
+                NodeList id = temp.getElementsByTagName("ID");
+                personaje.setID(Integer.parseInt(id.item(0).getTextContent()));
+                Personaje persona=new Personaje();
+                NodeList personaCercana=temp.getElementsByTagName("PersonaCercana");
+                persona.setNombre(personaCercana.item(0).getTextContent());
+                personaje.aPersonasercana(persona);
+                
+                NodeList ganados = temp.getElementsByTagName("CantidadEventosGanados");
+                personaje.setCantidadEventosGanados(Integer.parseInt(ganados.item(0).getTextContent()));
+                NodeList perdidos = temp.getElementsByTagName("CantidadEventosPerdidos");
+                personaje.setCantidadEventosPerdidos(Integer.parseInt(perdidos.item(0).getTextContent()));
+                NodeList nombreAntiHeroe = temp.getElementsByTagName("NombreAntiHeroe");
+                personaje.setNombreAntiHeroe(nombreAntiHeroe.item(0).getTextContent());
                 NodeList archiEnemigo = temp.getElementsByTagName("ArchiEnemigo");
-                antiHeroe.setArchiEnemigo(archiEnemigo.item(0).getTextContent());
-                lista.add(antiHeroe);
+                personaje.setArchiEnemigo(archiEnemigo.item(0).getTextContent());
+                lista.add(personaje);
             }
             return lista;
         }catch (ParserConfigurationException ex) {
@@ -581,77 +728,7 @@ public class DocumentXML {
            NodeList villanos=ciudad.getElementsByTagName("Villano");
            for (int i=0;i!=villanos.getLength();i++) {
                 Element temp =(Element) villanos.item(i);
-                Villano villano=new Villano();
-                NodeList nombre = temp.getElementsByTagName("Nombre");
-                villano.setNombre(nombre.item(0).getTextContent());
-                NodeList archiEnemigo = temp.getElementsByTagName("ArchiEnemigo");
-                villano.setArchiEnemigo(archiEnemigo.item(0).getTextContent());
-                lista.add(villano);
-            }
-            return lista;
-        }catch (ParserConfigurationException ex) {
-            Logger.getLogger(DocumentXML.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SAXException ex) {
-            Logger.getLogger(DocumentXML.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(DocumentXML.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return lista;
-    }
-    public ArrayList<String> listaPersonas(String pCiudad) {
-        ArrayList<String> lista=new ArrayList<>();
-        try {
-            File fXmlFile = new File("Data.xml");
-            DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
-            doc=docBuilder.parse(fXmlFile);
-            NodeList rootCiudad=doc.getElementsByTagName("Ciudad");
-            Element ciudad=doc.createElement("Actual");
-           for (int i=0;i!=rootCiudad.getLength();i++) {
-                Element temp =(Element) rootCiudad.item(i);
-                NodeList nombre = temp.getElementsByTagName("Nombre");       
-                
-                if (nombre.item(0).getTextContent().equals(pCiudad)) {
-                    ciudad=temp;
-                }   
-            }
-           NodeList villanos=ciudad.getElementsByTagName("Personaje");
-           for (int i=0;i!=villanos.getLength();i++) {
-                Element temp =(Element) villanos.item(i);
-                NodeList nombre = temp.getElementsByTagName("PersonaCercana");       
-                lista.add(nombre.item(0).getTextContent());
-            }
-            return lista;
-        }catch (ParserConfigurationException ex) {
-            Logger.getLogger(DocumentXML.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SAXException ex) {
-            Logger.getLogger(DocumentXML.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(DocumentXML.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return lista;
-    }
-    public ArrayList<Personaje> listaPersonajes(String pCiudad) {
-        ArrayList<Personaje> lista=new ArrayList<>();
-        try {
-            File fXmlFile = new File("Data.xml");
-            DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
-            doc=docBuilder.parse(fXmlFile);
-            NodeList rootCiudad=doc.getElementsByTagName("Ciudad");
-            Element ciudad=doc.createElement("Actual");
-           for (int i=0;i!=rootCiudad.getLength();i++) {
-                Element temp =(Element) rootCiudad.item(i);
-                NodeList nombre = temp.getElementsByTagName("Nombre");       
-                
-                if (nombre.item(0).getTextContent().equals(pCiudad)) {
-                    ciudad=temp;
-                }   
-            }
-           NodeList personajes=ciudad.getElementsByTagName("Personaje");
-           for (int i=0;i!=personajes.getLength();i++) {
-               Personaje personaje=new Personaje();
-                Element temp =(Element) personajes.item(i);
+                Villano personaje=new Villano();
                 NodeList nombre = temp.getElementsByTagName("Nombre");
                 personaje.setNombre(nombre.item(0).getTextContent());
                 NodeList edad = temp.getElementsByTagName("Edad");
@@ -668,11 +745,58 @@ public class DocumentXML {
                 personaje.setOCupacion(ocupacion.item(0).getTextContent());
                 NodeList id = temp.getElementsByTagName("ID");
                 personaje.setID(Integer.parseInt(id.item(0).getTextContent()));
+                Personaje persona=new Personaje();
+                NodeList personaCercana=temp.getElementsByTagName("PersonaCercana");
+                persona.setNombre(personaCercana.item(0).getTextContent());
+                personaje.aPersonasercana(persona);
                 
                 NodeList ganados = temp.getElementsByTagName("CantidadEventosGanados");
                 personaje.setCantidadEventosGanados(Integer.parseInt(ganados.item(0).getTextContent()));
                 NodeList perdidos = temp.getElementsByTagName("CantidadEventosPerdidos");
                 personaje.setCantidadEventosPerdidos(Integer.parseInt(perdidos.item(0).getTextContent()));
+                NodeList villano = temp.getElementsByTagName("NombreVillano");
+                personaje.setNombreVillano(villano.item(0).getTextContent());
+                NodeList archiEnemigo = temp.getElementsByTagName("ArchiEnemigo");
+                personaje.setArchiEnemigo(archiEnemigo.item(0).getTextContent());
+                lista.add(personaje);
+            }
+            return lista;
+        }catch (ParserConfigurationException ex) {
+            Logger.getLogger(DocumentXML.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SAXException ex) {
+            Logger.getLogger(DocumentXML.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(DocumentXML.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lista;
+    }
+    
+    public ArrayList<Personaje> listaPersona(String pCiudad) {
+        ArrayList<Personaje> lista=new ArrayList<>();
+        try {
+            File fXmlFile = new File("Data.xml");
+            DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+            doc=docBuilder.parse(fXmlFile);
+            NodeList rootCiudad=doc.getElementsByTagName("Ciudad");
+            Element ciudad=doc.createElement("Actual");
+           for (int i=0;i!=rootCiudad.getLength();i++) {
+                Element temp =(Element) rootCiudad.item(i);
+                NodeList nombre = temp.getElementsByTagName("Nombre");       
+                
+                if (nombre.item(0).getTextContent().equals(pCiudad)) {
+                    ciudad=temp;
+                }   
+            }
+           NodeList personajes=ciudad.getElementsByTagName("PersonaCercana");
+           for (int i=0;i!=personajes.getLength();i++) {
+               Personaje personaje=new Personaje();
+                Element temp =(Element) personajes.item(i);
+                NodeList nombre = temp.getElementsByTagName("Nombre");
+                personaje.setNombre(nombre.item(0).getTextContent());
+                NodeList estado = temp.getElementsByTagName("Estado");
+                personaje.setEstadoPersonacerna(estado.item(0).getTextContent());
+                
                 lista.add(personaje);
                 
             }
@@ -705,7 +829,6 @@ public class DocumentXML {
                 }   
             }
            NodeList nombre=ciudad.getElementsByTagName("Nombre");
-           System.out.println(nombre.item(0).getTextContent());
            nombre.item(0).setTextContent(pNombre);
            TransformerFactory transformerFactory = TransformerFactory.newInstance();
            Transformer transformer = transformerFactory.newTransformer();
@@ -756,13 +879,13 @@ public class DocumentXML {
         }
     }
     
-    public boolean buscarPersonaje(String pNombre) {
+    public boolean buscarPersona(String pNombre) {
         try {
             File fXmlFile = new File("Data.xml");
             DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
             doc=docBuilder.parse(fXmlFile);
-            NodeList nList = doc.getElementsByTagName("Personajes");    
+            NodeList nList = doc.getElementsByTagName("PersonaCercana");    
             for (int i = 0;i!=nList.getLength() ; i++) {
                 Node nNode = nList.item(i);
                 if (nNode.getNodeType() == Node.ELEMENT_NODE) {
